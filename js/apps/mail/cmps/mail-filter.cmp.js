@@ -3,8 +3,8 @@ export default {
         <section class="mail-filter">
         
             <form @submit.prevent="setFilter">
-            <label>Name:
-            <input type="text" name="text" v-model="byTxt" 
+            <label>
+            <input type="text" name="text" v-model="filterBy.byTxt" 
             placeholder="Search..." />
             </label>
               <button>search</button>
