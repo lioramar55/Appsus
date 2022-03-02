@@ -1,47 +1,39 @@
 import { mailService } from '../services/mail-service.js'
 
 export default {
-    template: `
+  template: `
      <section class="new-mail">
-     <form @submit.prevent="onPostMail">
-            <label>To
-            <input required type="email" v-model="mail.to" />
+        <form @submit.prevent="onPostMail">
+            <label>
+            <input required placeholder="To" type="email" v-model="mail.to" />
             </label>
-            <label>Subject
-            <input type="text" v-model="mail.subject"/>
+            <label>
+            <input type="text" placeholder="Subject" v-model="mail.subject"/>
             </label>
             <textarea v-model="mail.body" rows="10" cols="30">
-                  
-                </textarea> 
+            </textarea> 
             <button>send</button>
-              </form>
-
-
-       
+        </form>   
+        <button class="close">X</button>
       </section>
     `,
-    data() {
-      return {
-          mail: {
-              from:'Mahatma Appsus',
-              to:'',
-              subject:'',
-              body:'',
-              isRead: false,
-              sentAt: Date.now(),   
-          }
-        
-      }
-    },
-    created() {
-      
-    },
+  data() {
+    return {
+      mail: {
+        from: 'Mahatma Appsus',
+        to: '',
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+      },
+    }
+  },
+  created() {},
 
-    methods: {
-        onPostMail() {
-            mailService.postMail({...this.mail})
-            .than(this.$emit('mail-sent'))  
-        },
-        },
-  }
-  
+  methods: {
+    onPostMail() {
+      this.$emit('mail-sent', { ...this.mail })
+    },
+  },
+}

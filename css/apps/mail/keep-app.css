@@ -1,7 +1,8 @@
 .notes {
-  display: grid;
+  /* display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, 30%);
+  grid-template-columns: repeat(auto-fill, 30%); */
+  column-count: 4;
 }
 
 .note-preview {

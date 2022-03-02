@@ -1,11 +1,12 @@
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteModal from '../cmps/note-modal.cmp.js'
 import { noteService } from '../services/note-service.js'
+// import noteAdd from './apps/keep/cmps/note-add.cmp.js'
 
 export default {
   template: `
   <section class="note-app main-layout">
-    <note-add></note-add>
+    <!-- <note-add></note-add> -->
     <div class="notes">
       <note-preview v-if="notes" v-for="note in notes"
       :note="note"  @edit-note="onEditNote"></note-preview>
@@ -24,6 +25,7 @@ export default {
   },
   components: {
     notePreview,
+    // noteAdd,
     noteModal,
   },
   methods: {

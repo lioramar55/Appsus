@@ -14,21 +14,21 @@ export default {
         <mail-list  @email-selected="onOpenEmail" :emails="emails"></mail-list>
         <aside-mail @compose-mail="toggleAddMail" @status-filter="setFilter"></aside-mail>
       </div>
+      <new-mail v-if="isComposeMail" @mail-sent="toggleAddMail"></new-mail>
     </section>
-    <new-mail v-if="isComposeMail" @mail-sent="toggleAddMail"></new-mail>
   `,
   data() {
     return {
       emails: [],
       selectedEmail: null,
       criteria: {
-        status: '',
+        status: 'inbox',
         txt: '',
         // isRead: null,
         // isStared: true,
         // lables: ['important', 'romantic']
       },
-      isComposeMail: false
+      isComposeMail: false,
     }
   },
   created() {
@@ -39,7 +39,7 @@ export default {
     mailDetails,
     mailFilter,
     asideMail,
-    newMail
+    newMail,
   },
   methods: {
     onOpenEmail(email) {
@@ -50,14 +50,14 @@ export default {
           this.$router.push(`/mail/details/${email.id}`)
         })
       })
-
-  
     },
-  
-    toggleAddMail() {
+
+    toggleAddMail(newEmail) {
       this.isComposeMail = !this.isComposeMail
       if (!this.isComposeMail) {
-        mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
+        mailService
+          .postMail(newEmail)
+          .then(mailService.query().then((emails) => (this.emails = emails)))
       }
     },
 

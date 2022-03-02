@@ -20,11 +20,17 @@
 }
 
 .aside-filter li {
+  cursor: pointer;
   padding: 0.5rem;
+}
+
+.mail-preview {
+  cursor: default;
 }
 
 .mail-preview:hover {
   outline: 1px solid #333;
+  /* box-shadow: 2px 6px 8px 2px #333; */
 }
 
 .mail-app.read .content {

@@ -8,7 +8,7 @@ export const mailService = {
   getMailById,
   deleteMail,
   updateMail,
-  postMail
+  postMail,
 }
 
 const emailsKey = 'emailsDB'
@@ -34,7 +34,7 @@ function _filterByCriteria(emails, criteria) {
       (email) => email.to === loggedinUser.email && !email.removedAt
     )
   } else if (criteria.status === 'sent') {
-    filteredEmails = filteredEmails.filter((email) => email.to !== loggedinUser.email)
+    filteredEmails = filteredEmails.filter((email) => email.from !== loggedinUser.fullname)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
   }
@@ -63,6 +63,7 @@ function deleteMail(mail) {
 }
 
 function postMail(mail) {
+  console.log('mail', mail)
   return storageService.post(emailsKey, mail)
 }
 
@@ -122,7 +123,6 @@ function _createEmails() {
       sentAt: 155120930594,
       to: 'user@appsus.com',
     },
-     
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
