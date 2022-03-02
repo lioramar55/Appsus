@@ -22,7 +22,6 @@ export default {
 
   methods: {
     onSelectEmail(email) {
-      console.log(email);
       this.$emit('email-selected', { ...email })
     },
   },

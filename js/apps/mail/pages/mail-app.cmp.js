@@ -51,6 +51,4 @@ export default {
       this.criteria[key] = status
     },
   },
-  
-
 }
