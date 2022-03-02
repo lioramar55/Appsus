@@ -1,4 +1,5 @@
 import mailPreview from '../cmps/mail-preview.cmp.js'
+import { mailService } from '../services/mail-service.js'
 
 export default {
   template: `
@@ -11,7 +12,8 @@ export default {
           </tr>
         </thead>
         <tbody>
-          <mail-preview v-for="email in emails"></mail-preview>
+          <mail-preview v-for="email in emails"
+            :email="email"></mail-preview>
         </tbody>
       </table>
     </section>
@@ -20,6 +22,9 @@ export default {
     return {
       emails: [],
     }
+  },
+  created() {
+    mailService.query().then((emails) => (this.emails = [...emails]))
   },
   components: {
     mailPreview,

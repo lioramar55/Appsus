@@ -5,9 +5,12 @@ export default {
       <td class="from">{{email.from}}</td>
       <td class="content">
         <span class="subj">{{email.subject}}</span>
-        <span class="desc">{{email.description}}</span>
+        <span class="desc">{{email.body}}</span>
       </td>
-      <td class="time-sent">{{email.timeSent}}</td>
+      <td class="time-sent">{{email.sentAt}}</td>
     </tr>
   `,
+  created() {
+    console.log('this.email', this.email)
+  },
 }
