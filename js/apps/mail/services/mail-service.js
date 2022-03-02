@@ -19,22 +19,30 @@ const loggedinUser = {
 _createEmails()
 
 function query(criteria) {
-  if (!criteria) return storageService.query(emailsKey)
+  if (!criteria || (!criteria.txt && !criteria.status)) return storageService.query(emailsKey)
   return storageService.query(emailsKey).then((emails) => _filterByCriteria(emails, criteria))
 }
 
 function _filterByCriteria(emails, criteria) {
+  console.log(criteria)
   let filteredEmails = emails
   if (criteria.status !== 'trash') {
-    return Promise.resolve(emails.filter((email) => !email.removedAt))
+   filteredEmails = emails.filter((email) => !email.removedAt)
   }
   if (criteria.status === 'inbox') {
-    filteredEmails = emails.filter((email) => email.to === loggedinUser.email)
+    filteredEmails = emails.filter((email) => email.to === loggedinUser.email && !email.removedAt)
   } else if (criteria.status === 'sent') {
     filteredEmails = emails.filter((email) => email.to !== loggedinUser.email)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
-  }
+  } 
+  if (criteria.txt) {
+    const regex = new RegExp(this.criteria.txt, 'i')
+    filteredEmails = emails.filter(
+      (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body)
+    )
+  } 
+
   return Promise.resolve(filteredEmails)
 }
 
