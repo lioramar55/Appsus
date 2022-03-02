@@ -17,7 +17,11 @@ const routes = [
   {
     path: '/mail',
     component: mailApp,
-    childrens: [{ path: '/details/:mailId', component: mailDetails }],
+  },
+  {
+    path: '/mail/details/:mailId',
+    component: mailDetails,
+    
   },
   {
     path: '/keep',
@@ -27,6 +31,8 @@ const routes = [
     path: '/about',
     component: aboutPage,
   },
+
+
 ]
 
 export const router = VueRouter.createRouter({

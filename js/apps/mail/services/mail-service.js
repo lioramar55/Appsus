@@ -6,6 +6,7 @@ import { utilService } from '../../../services/util-service.js'
 export const mailService = {
   query,
   getMailById,
+  deleteMail,
 }
 
 const emailsKey = 'emailsDB'
@@ -83,4 +84,8 @@ function _createEmails() {
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
+}
+
+function deleteMail(mailId) {
+  return storageService.remove(emailsKey, mailId);
 }

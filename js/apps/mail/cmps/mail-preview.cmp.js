@@ -7,7 +7,7 @@ export default {
         <span class="subj">{{email.subject}}</span>
         <span class="desc">{{formmatedBody}}</span>
       </td>
-      <td class="time-sent">{{email.sentAt}}</td>
+      <td class="time-sent">{{email.sentAt}}</td> 
     </tr>
   `,
   data() {

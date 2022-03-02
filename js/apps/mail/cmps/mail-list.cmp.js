@@ -11,11 +11,17 @@ export default {
       </thead>
       <tbody>
         <mail-preview v-for="email in emails"
-          @click="$emit('email-selected',email)" :email="email"></mail-preview>
+          @click="onSelectEmail(email)" :email="email"></mail-preview>
       </tbody>
     </table>`,
 
   components: {
     mailPreview,
   },
+
+  methods: {
+    onSelectEmail(email) {
+        this.$emit('email-selected', email);
+    }
+}
 }
