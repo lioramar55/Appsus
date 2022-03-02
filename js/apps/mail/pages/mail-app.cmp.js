@@ -7,7 +7,6 @@ export default {
     <section class="mail-app">
       <h1>mail app</h1>
       <mail-list  @email-selected="onOpenEmail" :emails="emails"></mail-list>
-      <!-- <mail-details v-else :email="selectedEmail"></mail-details> -->
     </section>
   `,
   data() {

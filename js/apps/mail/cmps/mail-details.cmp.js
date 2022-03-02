@@ -15,7 +15,6 @@ export default {
   created() {
     var mailId = this.$route.params.mailId
     console.log('mailId', mailId)
-    // TODO
-    // mailService.getMailById()
+    mailService.getMailById(mailId).then((email) => (this.email = email))
   },
 }

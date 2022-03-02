@@ -5,6 +5,7 @@ import { utilService } from '../../../services/util-service.js'
 
 export const mailService = {
   query,
+  getMailById,
 }
 
 const emailsKey = 'emailsDB'
@@ -17,6 +18,10 @@ _createEmails()
 
 function query() {
   return storageService.query(emailsKey)
+}
+
+function getMailById(id) {
+  return storageService.get(emailsKey, id)
 }
 
 function _createEmails() {
