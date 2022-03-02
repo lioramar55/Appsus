@@ -33,14 +33,16 @@ export default {
     },
     setFilter(filterBy) {
       this.filterBy = filterBy;
-      console.log(filterBy.byName)
+      console.log(this.filterBy)
+      
   },
   },
   computed: {
     emailsToShow() {
-      if (!this.filterBy) return this.books;
-      const regex = new RegExp(this.filterBy.byName, 'i')
-      return this.books.filter(book => regex.test(book.title))
+      if (!this.filterBy) return this.emails;
+      const regex = new RegExp(this.filterBy.byTxt, 'i')
+      return this.emails.filter(email => regex.test(email.subject)
+       || regex.test(email.from) || regex.test(email.body))
     }
   }
 }

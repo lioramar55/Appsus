@@ -5,7 +5,7 @@ export default {
             <form @submit.prevent="setFilter">
             <label>Name:
             <input type="text" name="text" v-model="filterBy.byTxt" 
-            placeholder="Name of the book.." />
+            placeholder="Search..." />
             </label>
               <button>search</button>
               </form>
