@@ -31,7 +31,7 @@ function _filterByCriteria(emails, criteria) {
   if (criteria.status === 'inbox') {
     filteredEmails = emails.filter((email) => email.to === loggedinUser.email)
   } else if (criteria.status === 'sent') {
-    filteredEmails = emails.filter((email) => email.from !== loggedinUser.email)
+    filteredEmails = emails.filter((email) => email.to !== loggedinUser.email)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
   }
@@ -48,7 +48,7 @@ function getMailById(id) {
 }
 
 function deleteMail(mail) {
-  mail.removeAt = Date.now()
+  mail.removedAt = Date.now()
   return storageService.put(emailsKey, mail)
 }
 

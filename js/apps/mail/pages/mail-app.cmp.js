@@ -53,11 +53,17 @@ export default {
   },
   computed: {
     emailsToShow() {
-      // if (!this.criteria.txt) return this.emails
-      const regex = new RegExp(this.criteria.txt, 'i')
-      return this.emails.filter(
-        (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body)
-      )
+      let currEmails = {...this.emails}
+      if (this.criteria.txt) {
+        const regex = new RegExp(this.criteria.txt, 'i')
+        this.emails.filter(
+          (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body) 
+          )
+        }
+      if (this.criteria.status !== 'trash') {
+        currEmails = this.emails.filter((email) => !email.removedAt )
+      }
+      return currEmails
     },
   },
 }

@@ -24,7 +24,7 @@ export default {
     //TODO
     // add event bus
     onDeleteMail() {
-      mailService.deleteMail({ ...this.email }).then(this.$router.push('/mail'))
+      mailService.deleteMail({ ...this.email }).then(this.$router.push('/mail')).then( console.log(this.email))
     },
   },
 }
