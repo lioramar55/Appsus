@@ -5,32 +5,31 @@ import { noteService } from '../services/note-service.js'
 export default {
   template: `
   <section class="note-app">
-    <h1>Note App</h1>
-    <note-preview v-if="notes.length" v-for="note in notes"
-    @edit-note="openNoteModal"></note-preview>
+    <note-preview v-if="notes" v-for="note in notes"
+      :note="note"  @edit-note="onEditNote"></note-preview>
     <note-modal v-if="isModalOpen"></note-modal>
   </section>
   `,
   data() {
     return {
       isModalOpen: false,
-      notes: [],
+      notes: null,
     }
   },
   created() {
-    // noteService.query()
+    noteService.query().then((notes) => (this.notes = notes))
   },
   components: {
     notePreview,
     noteModal,
   },
   methods: {
-    openNoteModal(note) {
+    onEditNote(action) {
       this.isModalOpen = true
     },
-    toggleModal() {
-      this.isModalOpen = !this.isModalOpen
-    },
+    // toggleModal() {
+    //   this.isModalOpen = !this.isModalOpen
+    // },
   },
   computed: {},
 }

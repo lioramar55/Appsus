@@ -14,9 +14,9 @@ function query() {
 }
 
 function _createNotes() {
-  const notes = [
+  const baseNotes = [
     {
-      id: 'n101',
+      id: utilService.makeId(),
       type: 'note-txt',
       isPinned: true,
       info: {
@@ -24,10 +24,18 @@ function _createNotes() {
       },
     },
     {
-      id: 'n102',
+      id: utilService.makeId(),
+      type: 'note-txt',
+      isPinned: true,
+      info: {
+        txt: "We're gonna make it!",
+      },
+    },
+    {
+      id: utilService.makeId(),
       type: 'note-img',
       info: {
-        url: 'http://some-img/me',
+        url: 'https://images.unsplash.com/photo-1645930916050-523c86d40078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
         title: 'Bobi and Me',
       },
       style: {
@@ -35,7 +43,18 @@ function _createNotes() {
       },
     },
     {
-      id: 'n103',
+      id: utilService.makeId(),
+      type: 'note-video',
+      info: {
+        src: 'https://www.youtube.com/embed/w8HdOHrc3OQ',
+        title: 'Bobi and Me',
+      },
+      style: {
+        backgroundColor: '#00d',
+      },
+    },
+    {
+      id: utilService.makeId(),
       type: 'note-todos',
       info: {
         label: 'Get my stuff together',
@@ -46,4 +65,6 @@ function _createNotes() {
       },
     },
   ]
+  const notes = utilService.loadFromStorage(notesKey) || baseNotes
+  utilService.saveToStorage(notesKey, notes)
 }

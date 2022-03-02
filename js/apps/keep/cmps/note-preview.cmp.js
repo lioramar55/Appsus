@@ -1,13 +1,16 @@
 import noteEdit from './note-edit.cmp.js'
+import noteTxt from './note-txt.cmp.js'
+import noteVideo from './note-video.cmp.js'
+import noteImg from './note-img.cmp.js'
+import noteTodo from './note-todo.cmp.js'
 
 export default {
+  props: ['note'],
   template: `
-  <!-- TODO -->
-  <section class="note">
-    note
-    <!-- <component :is="note.type" 
-     @inform="onEditNote" :info="info" ></component> -->
-    <note-edit></note-edit>
+  <section class="note-preview">
+    <component :is="note.type" 
+    :info="note.info" @inform="onAction"></component>
+    <!-- <note-edit></note-edit> -->
   </section>
   `,
   data() {
@@ -15,13 +18,15 @@ export default {
   },
   components: {
     noteEdit,
+    noteTxt,
+    noteVideo,
+    noteImg,
+    noteTodo,
   },
   created() {},
   methods: {
-    onEditNote(note) {
-      this.$emit('edit-note', note)
+    onAction(action) {
+      this.$emit('edit-note', action)
     },
   },
-  computed: {},
-  unmounted: {},
 }
