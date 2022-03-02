@@ -1,18 +1,21 @@
 import mailList from '../cmps/mail-list.cmp.js'
 import mailDetails from '../cmps/mail-details.cmp.js'
 import mailFilter from '../cmps/mail-filter.cmp.js'
-import asideFilter from '../cmps/aside-filter.cmp.js'
+import asideMail from '../cmps/aside-mail.cmp.js'
+import newMail from '../cmps/new-mail.cmp.js'
 import { mailService } from '../services/mail-service.js'
 
 export default {
   template: `
     <section class="mail-app main-layout">
+
       <mail-filter @text-filter="setFilter"></mail-filter>
       <div class="mail-grid">
         <mail-list  @email-selected="onOpenEmail" :emails="emails"></mail-list>
-        <aside-filter @status-filter="setFilter"></aside-filter>
+        <aside-mail @compose-mail="toggleAddMail" @status-filter="setFilter"></aside-mail>
       </div>
     </section>
+    <new-mail v-if="isComposeMail" @mail-sent="toggleAddMail"></new-mail>
   `,
   data() {
     return {
@@ -25,6 +28,7 @@ export default {
         // isStared: true,
         // lables: ['important', 'romantic']
       },
+      isComposeMail: false
     }
   },
   created() {
@@ -34,7 +38,8 @@ export default {
     mailList,
     mailDetails,
     mailFilter,
-    asideFilter,
+    asideMail,
+    newMail
   },
   methods: {
     onOpenEmail(email) {
@@ -45,6 +50,15 @@ export default {
           this.$router.push(`/mail/details/${email.id}`)
         })
       })
+
+  
+    },
+  
+    toggleAddMail() {
+      this.isComposeMail = !this.isComposeMail
+      if (!this.isComposeMail) {
+        mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
+      }
     },
 
     setFilter(key, status) {
