@@ -12,7 +12,6 @@ const loggedinUser = {
   email: 'user@appsus.com',
   fullname: 'Mahatma Appsus',
 }
-let emails
 
 _createEmails()
 
@@ -42,6 +41,15 @@ function _createEmails() {
     },
     {
       id: utilService.makeId(),
+      from: 'Mahatma Appsus',
+      subject: 'Hello javascript!',
+      body: 'Hello Hello Hello',
+      isRead: false,
+      sentAt: 165157810994,
+      to: 'puki@walla.com',
+    },
+    {
+      id: utilService.makeId(),
       from: 'Weird guy',
       subject: 'Miss you!',
       body: 'Would love to catch up sometimes',
@@ -68,6 +76,6 @@ function _createEmails() {
       to: 'user@appsus.com',
     },
   ]
-  emails = utilService.loadFromStorage(emailsKey) || baseEmails
+  let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
 }

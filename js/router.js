@@ -16,6 +16,7 @@ const routes = [
   {
     path: '/mail',
     component: mailApp,
+    childrens: {},
   },
   {
     path: '/keep',
