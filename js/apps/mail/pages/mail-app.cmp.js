@@ -28,8 +28,13 @@ export default {
   },
   methods: {
     onOpenEmail(email) {
-      this.selectedEmail = email
-      this.$router.push(`/mail/details/${email.id}`)
+      mailService.updateMail(email).then((email) => {
+        this.selectedEmail = email
+        mailService.query().then((emails) => {
+          this.emails = emails
+          this.$router.push(`/mail/details/${email.id}`)
+        })
+      })
     },
     setFilter(filterBy) {
       this.filterBy = filterBy

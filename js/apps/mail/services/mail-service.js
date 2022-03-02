@@ -7,6 +7,7 @@ export const mailService = {
   query,
   getMailById,
   deleteMail,
+  updateMail,
 }
 
 const emailsKey = 'emailsDB'
@@ -21,6 +22,11 @@ function query() {
   return storageService.query(emailsKey)
 }
 
+function updateMail(email) {
+  email.isRead = true
+  return storageService.put(emailsKey, email)
+}
+
 function getMailById(id) {
   return storageService.get(emailsKey, id)
 }
@@ -33,7 +39,7 @@ function _createEmails() {
       subject: 'התחדשנו!',
       body: 'התחדשנו בשבילך! כדי שיהיה לך פשוט ונוח יותר, חידשנו את אפליקציית מכבי, מהיום מסך הבית עם אפשרות להתאמה אישית!',
       isRead: false,
-      sentAt: 1551133930888,
+      sentAt: Date.now(),
       to: 'user@appsus.com',
     },
     {
@@ -68,7 +74,7 @@ function _createEmails() {
       from: 'Dropbox',
       subject: 'Matan and 66 others made changes in your shared folders',
       body: "Activity in Shared FoldersHere's what happened in your shared folders last week",
-      isRead: false,
+      isRead: true,
       sentAt: 150133936594,
       to: 'user@appsus.com',
     },
@@ -77,7 +83,7 @@ function _createEmails() {
       from: 'Ninja Trader!',
       subject: 'NinjaTrader Monthly Statement 02/28/2022',
       body: 'Hi Mahatma Your monthly confirmation statement is now available for online viewing. For questions on information contained on your statement, please contact NinjaTrader Support.',
-      isRead: false,
+      isRead: true,
       sentAt: 155120930594,
       to: 'user@appsus.com',
     },
@@ -87,5 +93,5 @@ function _createEmails() {
 }
 
 function deleteMail(mailId) {
-  return storageService.remove(emailsKey, mailId);
+  return storageService.remove(emailsKey, mailId)
 }

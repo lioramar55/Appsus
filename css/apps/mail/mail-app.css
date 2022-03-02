@@ -2,6 +2,10 @@
 }
 
 .unread {
+  font-weight: 600;
+  color: #333;
 }
 .read {
+  font-weight: 400;
+  color: #444;
 }

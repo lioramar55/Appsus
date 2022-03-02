@@ -22,7 +22,7 @@ export default {
 
   methods: {
     onSelectEmail(email) {
-      this.$emit('email-selected', email)
+      this.$emit('email-selected', { ...email })
     },
   },
   computed: {},
