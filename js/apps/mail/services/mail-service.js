@@ -18,8 +18,24 @@ const loggedinUser = {
 
 _createEmails()
 
-function query() {
-  return storageService.query(emailsKey)
+function query(criteria) {
+  if (!criteria) return storageService.query(emailsKey)
+  return storageService.query(emailsKey).then((emails) => _filterByCriteria(emails, criteria))
+}
+
+function _filterByCriteria(emails, criteria) {
+  let filteredEmails = emails
+  if (criteria.status !== 'trash') {
+    return Promise.resolve(emails.filter((email) => !email.removedAt))
+  }
+  if (criteria.status === 'inbox') {
+    filteredEmails = emails.filter((email) => email.to === loggedinUser.email)
+  } else if (criteria.status === 'sent') {
+    filteredEmails = emails.filter((email) => email.from !== loggedinUser.email)
+  } else if (criteria.status === 'trash') {
+    filteredEmails = emails.filter((email) => email.removedAt)
+  }
+  return Promise.resolve(filteredEmails)
 }
 
 function updateMail(email) {
@@ -29,6 +45,11 @@ function updateMail(email) {
 
 function getMailById(id) {
   return storageService.get(emailsKey, id)
+}
+
+function deleteMail(mail) {
+  mail.removeAt = Date.now()
+  return storageService.put(emailsKey, mail)
 }
 
 function _createEmails() {
@@ -90,8 +111,4 @@ function _createEmails() {
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
-}
-
-function deleteMail(mailId) {
-  return storageService.remove(emailsKey, mailId)
 }

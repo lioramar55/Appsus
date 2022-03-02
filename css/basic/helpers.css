@@ -13,3 +13,14 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* Buttons */
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  color: #333;
+  text-transform: uppercase;
+  border-radius: 1rem;
+}

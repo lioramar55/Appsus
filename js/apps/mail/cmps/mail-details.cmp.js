@@ -2,7 +2,7 @@ import { mailService } from '../services/mail-service.js'
 
 export default {
   template: `
-    <section class="mail-details">
+    <section v-if="email" class="mail-details">
       <h1>Subject: {{email.subject}}</h1>
       <h2>Sent from: {{email.from}}</h2>
       <p>{{email.body}}</p>
@@ -24,7 +24,7 @@ export default {
     //TODO
     // add event bus
     onDeleteMail() {
-      mailService.deleteMail(this.email.id).then(this.$router.push('/mail'))
+      mailService.deleteMail({ ...this.email }).then(this.$router.push('/mail'))
     },
   },
 }

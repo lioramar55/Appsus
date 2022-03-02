@@ -4,7 +4,7 @@ export default {
     <tr :class="isRead" class="mail-preview">
       <td class="from">{{email.from}}</td>
       <td class="content">
-        <span class="subj">{{email.subject}}</span>
+        <span class="subj">{{subject}}</span>
         <span class="body">{{formmatedBody}}</span>
       </td>
       <td class="time-sent">{{sentAt}}</td> 
@@ -17,6 +17,9 @@ export default {
   computed: {
     isRead() {
       return this.email.isRead ? 'read' : 'unread'
+    },
+    subject() {
+      return this.email.subject ? this.email.subject : 'No subject'
     },
     formmatedBody() {
       const text =
