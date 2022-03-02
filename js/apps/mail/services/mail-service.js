@@ -36,8 +36,8 @@ function _filterByCriteria(emails, criteria) {
     filteredEmails = emails.filter((email) => email.removedAt)
   }
   if (criteria.txt) {
-    const regex = new RegExp(this.criteria.txt, 'i')
-    filteredEmails = emails.filter(
+    const regex = new RegExp(criteria.txt, 'i')
+    filteredEmails = filteredEmails.filter(
       (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body)
     )
   }

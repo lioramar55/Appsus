@@ -49,6 +49,7 @@ export default {
 
     setFilter(key, status) {
       this.criteria[key] = status
+      mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
     },
   },
 }
