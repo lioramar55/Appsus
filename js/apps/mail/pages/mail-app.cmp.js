@@ -24,7 +24,7 @@ export default {
   components: {
     mailList,
     mailDetails,
-    mailFilter
+    mailFilter,
   },
   methods: {
     onOpenEmail(email) {
@@ -32,15 +32,15 @@ export default {
       this.$router.push(`/mail/details/${email.id}`)
     },
     setFilter(filterBy) {
-      this.filterBy = filterBy;
+      this.filterBy = filterBy
       console.log(filterBy.byName)
-  },
+    },
   },
   computed: {
     emailsToShow() {
-      if (!this.filterBy) return this.books;
+      if (!this.filterBy) return this.books
       const regex = new RegExp(this.filterBy.byName, 'i')
-      return this.books.filter(book => regex.test(book.title))
-    }
-  }
+      return this.books.filter((book) => regex.test(book.title))
+    },
+  },
 }

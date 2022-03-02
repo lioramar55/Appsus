@@ -8,7 +8,6 @@ export default {
       <p>{{email.body}}</p>
       <router-link :to="'/mail'">Back to mails</router-link>
       <button @click="onDeleteMail">Delete</button>
-     
     </section>
   `,
   data() {
@@ -22,13 +21,11 @@ export default {
     mailService.getMailById(mailId).then((email) => (this.email = email))
   },
 
-  methods : {
-    //TODO 
+  methods: {
+    //TODO
     // add event bus
     onDeleteMail() {
-    mailService.deleteMail(this.email.id)
-    .then(this.$router.push('/mail'))
-    }
-
+      mailService.deleteMail(this.email.id).then(this.$router.push('/mail'))
+    },
   },
 }

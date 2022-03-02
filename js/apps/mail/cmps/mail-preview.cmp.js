@@ -7,7 +7,7 @@ export default {
         <span class="subj">{{email.subject}}</span>
         <span class="desc">{{formmatedBody}}</span>
       </td>
-      <td class="time-sent">{{email.sentAt}}</td> 
+      <td class="time-sent">{{sentAt}}</td> 
     </tr>
   `,
   data() {
@@ -19,6 +19,10 @@ export default {
       const text =
         this.email.body.length > 50 ? this.email.body.slice(0, 48) + '...' : this.email.body
       return text
+    },
+    sentAt() {
+      let date = new Date(this.email.sentAt)
+      return `${date.toLocaleString('default', { month: 'short', day: 'numeric' })}`
     },
   },
 }

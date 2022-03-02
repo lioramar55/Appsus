@@ -11,7 +11,8 @@ export default {
       </thead>
       <tbody>
         <mail-preview v-for="email in emails"
-          @click="onSelectEmail(email)" :email="email"></mail-preview>
+          @click="onSelectEmail(email)"
+          :email="email"></mail-preview>
       </tbody>
     </table>`,
 
@@ -21,7 +22,8 @@ export default {
 
   methods: {
     onSelectEmail(email) {
-        this.$emit('email-selected', email);
-    }
-}
+      this.$emit('email-selected', email)
+    },
+  },
+  computed: {},
 }
