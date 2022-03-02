@@ -49,19 +49,24 @@ export default {
 
     setFilter(key, status) {
       this.criteria[key] = status
+      console.log('status', status)
     },
   },
   computed: {
     emailsToShow() {
-      let currEmails = {...this.emails}
+      let currEmails = { ...this.emails }
       if (this.criteria.txt) {
         const regex = new RegExp(this.criteria.txt, 'i')
         this.emails.filter(
-          (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body) 
-          )
-        }
+          (email) => regex.test(email.subject) || regex.test(email.from) || regex.test(email.body)
+        )
+      }
       if (this.criteria.status !== 'trash') {
-        currEmails = this.emails.filter((email) => !email.removedAt )
+        currEmails = this.emails.filter((email) => !email.removedAt)
+      } else if (this.criteria.status === 'sent') {
+      } else if (this.criteria.status === 'inbox') {
+      } else {
+        currEmails = this.emails.filter((email) => email.removedAt)
       }
       return currEmails
     },
