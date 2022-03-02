@@ -7,11 +7,11 @@ import noteTodo from './note-todo.cmp.js'
 export default {
   props: ['note'],
   template: `
-  <section class="note-preview">
+  <article class="note-preview">
     <component :is="note.type" 
     :info="note.info" @inform="onAction"></component>
     <!-- <note-edit></note-edit> -->
-  </section>
+  </article>
   `,
   data() {
     return {}

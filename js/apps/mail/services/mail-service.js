@@ -29,9 +29,11 @@ function _filterByCriteria(emails, criteria) {
     filteredEmails = emails.filter((email) => !email.removedAt)
   }
   if (criteria.status === 'inbox') {
-    filteredEmails = emails.filter((email) => email.to === loggedinUser.email && !email.removedAt)
+    filteredEmails = filteredEmails.filter(
+      (email) => email.to === loggedinUser.email && !email.removedAt
+    )
   } else if (criteria.status === 'sent') {
-    filteredEmails = emails.filter((email) => email.to !== loggedinUser.email)
+    filteredEmails = filteredEmails.filter((email) => email.to !== loggedinUser.email)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
   }

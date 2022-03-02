@@ -1,0 +1,9 @@
+.notes {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, 30%);
+}
+
+.note-preview {
+  background-color: #333;
+}

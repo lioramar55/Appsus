@@ -2,3 +2,9 @@
   max-width: 1080px;
   margin: 0 auto;
 }
+
+.main-app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5vh minmax(85vh, 80%) 5vh;
+}
