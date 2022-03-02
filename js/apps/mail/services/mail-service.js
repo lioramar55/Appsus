@@ -8,6 +8,7 @@ export const mailService = {
   getMailById,
   deleteMail,
   updateMail,
+  postMail
 }
 
 const emailsKey = 'emailsDB'
@@ -57,6 +58,10 @@ function getMailById(id) {
 function deleteMail(mail) {
   mail.removedAt = Date.now()
   return storageService.put(emailsKey, mail)
+}
+
+function postMail(mail) {
+  return storageService.post(emailsKey, mail)
 }
 
 function _createEmails() {
@@ -115,6 +120,7 @@ function _createEmails() {
       sentAt: 155120930594,
       to: 'user@appsus.com',
     },
+     
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
