@@ -1,5 +1,6 @@
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteModal from '../cmps/note-modal.cmp.js'
+import { noteService } from '../services/note-service.js'
 
 export default {
   template: `
@@ -16,7 +17,9 @@ export default {
       notes: [],
     }
   },
-  created() {},
+  created() {
+    // noteService.query()
+  },
   components: {
     notePreview,
     noteModal,
