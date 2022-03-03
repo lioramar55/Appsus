@@ -4,10 +4,10 @@ export default {
         
             <form @submit.prevent="setFilter">
             <label>
-            <input type="text" name="text" v-model="byTxt" 
-            placeholder="Search..." />
+            <img src="assets/icons/gmaillogo.png"> 
+            <input v-on:keyup.enter="submit" type="text" name="text" v-model="byTxt" 
+            placeholder="Search mail" />
             </label>
-              <button>search</button>
               </form>
              </section>
     `,

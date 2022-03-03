@@ -34,7 +34,7 @@ function _filterByCriteria(emails, criteria) {
       (email) => email.to === loggedinUser.email && !email.removedAt
     )
   } else if (criteria.status === 'sent') {
-    filteredEmails = filteredEmails.filter((email) => email.from !== loggedinUser.fullname)
+    filteredEmails = filteredEmails.filter((email) => email.from === loggedinUser.fullname)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
   }

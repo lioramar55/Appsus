@@ -4,6 +4,7 @@
   bottom: 10vh;
   left: 10vh;
   box-shadow: 4px 4px 9px 2px rgba(0, 0, 0, 0.6);
+  
 }
 
 .new-mail form {
@@ -11,13 +12,18 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  width: 30rem;
+  height: 30rem;
 }
 
 .new-mail textarea {
   resize: none;
+  width: 29rem;
+  height: 29rem;
 }
 
 .new-mail form input {
+  width: 29rem;
 }
 
 .new-mail form button {
