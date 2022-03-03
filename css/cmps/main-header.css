@@ -1,10 +1,38 @@
 .app-header {
-  background-color: lightcyan;
+  height: 3.75rem;
+    background-color: rgb(37, 37, 37);
+    margin-bottom: 5rem;
+    box-shadow: -1px 0 0 0 gray, 
+    inset 0px -6px 0 0 black;  
 }
 
-.nav-list {
+.nav-list  {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 1rem;
+  cursor: pointer;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  margin-top: 1rem;
+  
 }
+
+.app-header .logo {
+  font-family: roboto;
+  font-size: 2rem;
+  color: rgb(187, 187, 187);
+  margin-top: 0.5rem;
+}
+
+.app-header a, .app-header a:active {
+  color: rgb(187, 187, 187);
+  text-decoration: none;
+  font-family: roboto;
+}
+
+.app-header .router-link-exact-active {
+  color: rgb(250, 250, 250);
+}
+
+
+

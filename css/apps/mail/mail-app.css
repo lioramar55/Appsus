@@ -10,14 +10,18 @@
 }
 
 .mail-list {
-  flex-basis: 80%;
+  flex-basis: 100%;
 }
+
+
 
 .mail-filter {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+  flex-direction: column;
+  
 }
 
 .mail-filter img {
@@ -31,4 +35,12 @@
   border-radius: 0.3rem;
   border: none;
   box-shadow: 1px 0px 15px -3px #000000;
+}
+
+.mail-filter select {
+  width: 5rem;
+  height: 2rem;
+  box-shadow: 1px 0px 15px -3px #000000;
+  margin-top: 0.5rem;
+  border: none;
 }

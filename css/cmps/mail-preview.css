@@ -1,5 +1,8 @@
+
+
 .mail-preview {
     cursor: default;
+    height: 2rem;
   }
   
   .mail-preview:hover {
@@ -17,10 +20,8 @@
     background-color: rgba(242, 245, 245, 0.8);
   }
 
-  .mail-preview .yellow {
-    background-color: yellow;
-  }
-
-  .mail-preview img .blank {
-   background-color: none;
-  }
+.mail-preview img {
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0.8px;
+}
