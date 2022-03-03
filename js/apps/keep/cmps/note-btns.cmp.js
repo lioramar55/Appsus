@@ -3,20 +3,20 @@ export default {
   template: `
     <section class="note-edit">
       <div class="btns">
-        <button @click="onPin">
+        <button class="icon" @click="onPin">
           <img  :src="isPinnedImg">
         </button>
-        <button @click="$emit('edit-action','duplicated')">
+        <button class="icon" @click="$emit('edit-action','duplicated')">
           <img  src="assets/icons/duplicate.png">
         </button>
-          <button @click="onPaint">
+          <button class="icon" @click="onPaint">
             <img  src="assets/icons/paint.png">
           </button>
        
-        <button @click="$emit('edit-action','edit')">
+        <button class="icon" @click="$emit('edit-action','edit')">
           <img  src="assets/icons/edit.png">
         </button>
-        <button @click="$emit('edit-action','export')">
+        <button class="icon" @click="$emit('edit-action','export')">
           <img  src="assets/icons/export.png">
         </button>
       </div>

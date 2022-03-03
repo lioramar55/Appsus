@@ -24,3 +24,10 @@
   text-transform: uppercase;
   border-radius: 1rem;
 }
+
+.icon {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

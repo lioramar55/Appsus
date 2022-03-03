@@ -99,18 +99,29 @@
 
 .note-add {
   display: flex;
+  width: 60%;
   border-radius: 0.5rem;
-  margin: 0 auto;
   flex-direction: column;
   align-items: center;
+  margin: 1rem auto;
   border: 1px solid #333;
 }
 
+.note-add-layout {
+  position: relative;
+}
+
 .note-add input {
+  background-color: transparent;
   padding: 0.5rem;
   width: 20rem;
   margin: 0.4rem 0;
   border: none;
+}
+
+.note-add ::placeholder {
+  color: white;
+  font-weight: 600;
 }
 
 .note-add input:first-child {
@@ -119,11 +130,14 @@
 
 .note-add input:focus-within {
   outline: none;
+  color: white;
+  font-weight: 600;
 }
 
-.note-add nav button {
+.note-add nav button:not(.icon) {
   padding: 0.5rem;
   outline: 1px solid #333;
+  color: white;
   font-weight: 600;
   background-color: transparent;
   border: none;
@@ -141,7 +155,7 @@
   height: 3rem;
 }
 
-.input-wrap .btns {
+.btns {
   align-self: center;
 }
 
@@ -149,18 +163,11 @@
   display: flex;
 }
 
-.btns button,
-nav .btns button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
 .note-add button img {
   width: 1.5rem;
   height: 1.5rem;
 }
+
 .input-wrap button:hover {
   outline: none;
 }
