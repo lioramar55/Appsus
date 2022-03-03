@@ -25,6 +25,7 @@ function query(criteria) {
 }
 
 function _filterByCriteria(emails, criteria) {
+  console.log('criteria', criteria)
   let filteredEmails = emails
   if (criteria.status !== 'trash') {
     filteredEmails = emails.filter((email) => !email.removedAt)
@@ -39,6 +40,13 @@ function _filterByCriteria(emails, criteria) {
     filteredEmails = emails.filter((email) => email.removedAt)
   } else if (criteria.status === 'starred') {
     filteredEmails = emails.filter((email) => email.isStarred)
+  }
+  if (criteria.isRead) {
+    if (criteria.isRead.toLowerCase() === 'read') {
+      filteredEmails = emails.filter((email) => email.isRead)
+    } else if (criteria.isRead.toLowerCase() === 'unread') {
+      filteredEmails = emails.filter((email) => !email.isRead)
+    }
   }
 
   if (criteria.txt) {

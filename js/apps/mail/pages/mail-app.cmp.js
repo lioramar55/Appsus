@@ -9,7 +9,7 @@ export default {
   template: `
     <section class="mail-app main-layout">
 
-      <mail-filter @text-filter="setFilter"></mail-filter>
+      <mail-filter @set-filter="setFilter"></mail-filter>
       <div class="mail-layout">
         <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
         <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
@@ -71,6 +71,7 @@ export default {
     },
 
     setFilter(key, status) {
+      console.log('key, status', key, status)
       this.criteria[key] = status
       mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
     },
