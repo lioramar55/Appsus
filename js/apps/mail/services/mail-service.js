@@ -25,7 +25,6 @@ function query(criteria) {
 }
 
 function _filterByCriteria(emails, criteria) {
-  console.log('criteria', criteria)
   let filteredEmails = emails
   if (criteria.status !== 'trash') {
     filteredEmails = emails.filter((email) => !email.removedAt)
