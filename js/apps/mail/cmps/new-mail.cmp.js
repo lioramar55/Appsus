@@ -1,5 +1,3 @@
-import { mailService } from '../services/mail-service.js'
-
 export default {
   template: `
      <section class="new-mail">
@@ -14,7 +12,7 @@ export default {
             </textarea> 
             <button>send</button>
         </form>   
-        <button class="close">X</button>
+        <button @click="$emit('close-modal')" class="close">X</button>
       </section>
     `,
   data() {
@@ -27,7 +25,6 @@ export default {
         isRead: false,
         sentAt: Date.now(),
       },
-      
     }
   },
   created() {},
@@ -36,7 +33,5 @@ export default {
     onPostMail() {
       this.$emit('mail-sent', { ...this.mail })
     },
-   
- 
   },
 }

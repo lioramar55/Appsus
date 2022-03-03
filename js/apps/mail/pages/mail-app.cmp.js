@@ -10,11 +10,12 @@ export default {
     <section class="mail-app main-layout">
 
       <mail-filter @text-filter="setFilter"></mail-filter>
-      <div class="mail-grid">
+      <div class="mail-layout">
         <mail-list  @email-selected="onOpenEmail" :emails="emails"></mail-list>
-        <aside-mail @compose-mail="toggleAddMail" @status-filter="setFilter"></aside-mail>
+        <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
       </div>
-      <new-mail v-if="isComposeMail" @mail-sent="toggleAddMail"></new-mail>
+      <new-mail v-if="isComposeMail"
+       @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
     </section>
   `,
   data() {
@@ -29,11 +30,9 @@ export default {
         // lables: ['important', 'romantic']
       },
       isComposeMail: false,
-      // folder: null,
     }
   },
   created() {
-    // this.folder = this.$route.params.folder ? this.$route.params.folder : this.criteria.status
     mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
   },
   components: {
@@ -54,13 +53,11 @@ export default {
       })
     },
 
-    toggleAddMail(newEmail) {
+    sendNewMail(newEmail) {
       this.isComposeMail = !this.isComposeMail
-      if (!this.isComposeMail) {
-        mailService
-          .postMail(newEmail)
-          .then(mailService.query().then((emails) => (this.emails = emails)))
-      }
+      mailService
+        .postMail(newEmail)
+        .then(mailService.query().then((emails) => (this.emails = emails)))
     },
 
     setFilter(key, status) {

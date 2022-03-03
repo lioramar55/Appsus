@@ -1,5 +1,7 @@
-.mail-grid {
+/* MAIL APP */
+.mail-layout {
   display: flex;
+  width: 100%;
 }
 
 .mail-app {
@@ -10,6 +12,38 @@
 .mail-list {
   flex-basis: 80%;
 }
+
+.mail-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.mail-filter img {
+  width: 100px;
+  height: 50px;
+}
+
+.mail-filter input {
+  width: 35rem;
+  height: 2.8rem;
+  border-radius: 0.3rem;
+  border: none;
+  box-shadow: 1px 0px 15px -3px #000000;
+}
+
+/* Mail Details */
+
+.mail-details {
+  align-self: flex-start;
+  padding: 2rem;
+  width: 100%;
+  min-height: 100%;
+  box-shadow: 1px 0px 15px -3px #000000;
+}
+
+/* ASIDE FILTER */
 
 .aside-filter {
   display: flex;
@@ -28,51 +62,15 @@
   font-weight: 600;
 }
 
-.aside-filter .activeInbox {
-  background-color: #fce8e6;
-  color:#d93025;
-  width: 15rem;
-  height: 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-
-
-}
-
-.mail-filter img {
-  width:100px;
-  height: 50px;
-}
-
-.mail-filter label {
-  display: flex;
-  gap: 5rem;
-  margin-top:1rem;
-  margin-bottom: 1rem;
-}
-
-.mail-filter input {
-  width: 35rem;
-  height: 2.8rem;
-  border-radius: 0.3rem;
-  border: none;
-  box-shadow: 1px 0px 15px -3px #000000;
-
-}
-
-
-
 .aside-filter li {
   cursor: pointer;
   padding: 0.5rem;
 }
 
 .aside-filter .compose-btn {
-  width: 9rem;
-  height: 3rem;
-  text-align: left;
   border: none;
+  padding: 0.5rem 1rem;
+  align-self: flex-start;
   border-radius: 1rem;
   box-shadow: 1px 0px 15px -3px #000000;
   background-color: white;
@@ -80,16 +78,22 @@
 }
 
 .aside-filter .compose-btn:hover {
-  width: 9rem;
-  height: 3rem;
   text-align: left;
-  border: none;
   border-radius: 1rem;
   box-shadow: 1px 0px 20px -3px #000000;
-  cursor: pointer;
 }
 
+.aside-filter .activeInbox {
+  background-color: #fce8e6;
+  color: #d93025;
+  width: 15rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
 
+/* Mail preview */
 
 .mail-preview {
   cursor: default;
@@ -100,8 +104,6 @@
   /* box-shadow: 2px 6px 8px 2px #333; */
 }
 
-
-
 .unread {
   font-weight: 600;
   color: #333;
@@ -109,5 +111,5 @@
 .read {
   font-weight: 400;
   color: #444;
-  background-color: rgba(242,245,245,0.8)
+  background-color: rgba(242, 245, 245, 0.8);
 }
