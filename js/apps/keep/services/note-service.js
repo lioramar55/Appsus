@@ -64,8 +64,8 @@ function _createNotes() {
       id: utilService.makeId(),
       type: 'note-video',
       info: {
-        src: 'https://www.youtube.com/embed/uH78GUo2TOs',
-        title: 'Sultans of swing',
+        url: 'https://www.youtube.com/embed/nFjDqwtXdKw',
+        title: 'Samurai',
       },
       style: {
         backgroundColor: '',

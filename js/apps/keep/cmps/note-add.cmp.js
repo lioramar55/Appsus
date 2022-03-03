@@ -61,13 +61,34 @@ export default {
     closeAddNote() {
       this.isAddingNote = false
       this.note.title = ''
-      this.note.content = ''
+      this.note.txt = ''
     },
     onSave() {
-      switch (this.note.type) {
-        case 'note-img' || 'note-video' || 'note-audio':
+      let type = this.note.type
+      if (type === 'note-img' || type === 'note-audio') {
+        this.note.info.url = this.input
+      } else if (type === 'note-video') {
+        if (this.input.search('embed') === -1) {
+          let urlArray = this.input.split('/')
+          let videoIdIdx = urlArray[urlArray.length - 1].search('v=')
+          if (videoIdIdx === -1) {
+            this.note.info.url = `https://www.youtube.com/embed/${urlArray[urlArray.length - 1]}`
+          } else {
+            let videoId = urlArray[urlArray.length - 1].slice(videoIdIdx + 2)
+            let endIdx = videoId.indexOf('&')
+            if (endIdx !== -1) {
+              videoId = videoId.slice(0, endIdx)
+            }
+            this.note.info.url = `https://www.youtube.com/embed/${videoId}`
+          }
+        } else {
           this.note.info.url = this.input
-          break
+        }
+      }
+
+      console.log('this.note.info.url', this.note.info.url)
+
+      switch (type) {
         case 'note-txt':
           this.note.info.txt = this.input
           break
