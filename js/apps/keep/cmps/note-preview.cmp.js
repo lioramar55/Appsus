@@ -11,7 +11,7 @@ export default {
   <article class="note-preview" :style="noteStyle">
     <component class="note-content" :is="note.type" 
     :note="note" @inform="onAction"></component>
-    <note-btns @edit-action="onEditAction"></note-btns>
+    <note-btns :note="note" @edit-action="onEditAction"></note-btns>
   </article>
   `,
   data() {

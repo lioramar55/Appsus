@@ -1,9 +1,10 @@
 export default {
+  props: ['note'],
   template: `
     <section class="note-edit">
       <div class="btns">
-        <button @click="$emit('edit-action','pinned')">
-          <img  src="assets/icons/pin.png">
+        <button @click="onPin">
+          <img  :src="isPinnedImg">
         </button>
         <button @click="$emit('edit-action','duplicated')">
           <img  src="assets/icons/duplicate.png">
@@ -29,17 +30,26 @@ export default {
   data() {
     return {
       colorPalleteOpen: false,
-      colors: ['#333', '#999', 'salmon', 'lightgreen', 'lightcyan'],
+      colors: ['#333', '#999', 'salmon', 'lightgreen', 'tomato', 'lightcyan'],
+      isPinned: null,
     }
   },
+  created() {},
   methods: {
+    onPin() {
+      this.$emit('edit-action', 'pinned')
+    },
     onPaint() {
       this.colorPalleteOpen = !this.colorPalleteOpen
-      // this.$emit('edit-action', 'paint')
     },
     setPaintColor(color) {
       this.$emit('edit-action', 'paint', color)
       this.colorPalleteOpen = !this.colorPalleteOpen
+    },
+  },
+  computed: {
+    isPinnedImg() {
+      return this.note.isPinned ? 'assets/icons/pinned.png' : 'assets/icons/pin.png'
     },
   },
 }

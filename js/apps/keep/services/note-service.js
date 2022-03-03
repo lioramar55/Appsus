@@ -15,6 +15,7 @@ function query() {
 }
 
 function updateNote(updatedNote) {
+  console.log('updatedNote', updatedNote)
   return storageService.put(notesKey, updatedNote)
 }
 

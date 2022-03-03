@@ -7,7 +7,13 @@ export default {
   template: `
   <section class="note-app main-layout">
     <!-- <note-add></note-add> -->
+    <div v-if="pinnedNotes" class="pinned-notes">
+      <h2>Pinned notes:</h2>
+      <note-preview  v-for="note in pinnedNotes"
+      :note="note"  @edit-note="onEditNote"></note-preview>
+    </div>
     <div class="notes">
+      <h2>Your notes:</h2>
       <note-preview v-if="notes" v-for="note in notes"
       :note="note"  @edit-note="onEditNote"></note-preview>
     </div>
@@ -18,10 +24,14 @@ export default {
     return {
       isModalOpen: false,
       notes: null,
+      pinnedNotes: null,
     }
   },
   created() {
-    noteService.query().then((notes) => (this.notes = notes))
+    noteService.query().then((notes) => {
+      this.pinnedNotes = notes.filter((note) => note.isPinned)
+      this.notes = notes.filter((note) => !note.isPinned)
+    })
   },
   components: {
     notePreview,
@@ -29,22 +39,29 @@ export default {
     noteModal,
   },
   methods: {
-    onEditNote(action, value, note) {
+    onEditNote(action, value, oldNote) {
+      let noteToUpdate = JSON.parse(JSON.stringify({ ...oldNote }))
       switch (action) {
         case 'paint':
-          note.style = { backgroundColor: value }
+          noteToUpdate.style = { backgroundColor: value }
           noteService.updateNote(note).then((updatedNote) => {
             let idx = this.notes.findIndex((note) => note.id === updatedNote.id)
             this.notes.splice(idx, 1, updatedNote)
           })
+
           break
-        default:
+        case 'pinned':
+          noteToUpdate.isPinned = !noteToUpdate.isPinned
+          noteService.updateNote(noteToUpdate).then(() =>
+            noteService.query().then((notes) => {
+              this.pinnedNotes = notes.filter((note) => note.isPinned)
+              this.notes = notes.filter((note) => !note.isPinned)
+            })
+          )
+
           break
       }
     },
-    // toggleModal() {
-    //   this.isModalOpen = !this.isModalOpen
-    // },
   },
   computed: {},
 }
