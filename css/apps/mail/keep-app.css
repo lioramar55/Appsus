@@ -22,6 +22,8 @@
   outline: 2px solid #333;
 }
 
+/* Note edit */
+
 .note-edit {
   background-color: rgba(68, 68, 68, 0.6);
   flex-basis: 60px;
@@ -43,4 +45,20 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
+}
+
+/* Note-Btns */
+.note-btns {
+}
+
+.pallete {
+  position: relative;
+}
+
+.color-picker {
+  position: absolute;
+}
+
+.color-picker .color {
+  border-radius: 50%;
 }
