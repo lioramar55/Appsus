@@ -1,0 +1,26 @@
+.mail-preview {
+    cursor: default;
+  }
+  
+  .mail-preview:hover {
+    outline: 1px solid #333;
+    /* box-shadow: 2px 6px 8px 2px #333; */
+  }
+  
+  .unread {
+    font-weight: 600;
+    color: #333;
+  }
+  .read {
+    font-weight: 400;
+    color: #444;
+    background-color: rgba(242, 245, 245, 0.8);
+  }
+
+  .mail-preview .yellow {
+    background-color: yellow;
+  }
+
+  .mail-preview img .blank {
+   background-color: none;
+  }

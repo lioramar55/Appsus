@@ -11,7 +11,7 @@ export default {
 
       <mail-filter @text-filter="setFilter"></mail-filter>
       <div class="mail-layout">
-        <mail-list  @email-selected="onOpenEmail" :emails="emails"></mail-list>
+        <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
         <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
       </div>
       <new-mail v-if="isComposeMail"
@@ -51,6 +51,15 @@ export default {
           this.$router.push(`/mail/details/${email.id}`)
         })
       })
+     
+    },
+
+    onEmailStar(email) {
+        console.log(email)
+       email.isStarred = !email.isStarred
+       mailService.updateMail(email)
+       
+        
     },
 
     sendNewMail(newEmail) {

@@ -1,0 +1,26 @@
+.mail-details {
+    align-self: flex-start;
+    padding: 2rem;
+    width: 100%;
+    min-height: 100%;
+    box-shadow: 1px 0px 15px -3px #000000;
+    overflow-wrap: break-word;
+}
+
+.mail-details nav {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.mail-details img {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  
+}
+
+.mail-details button {
+  border: none;
+  background-color: white;
+}

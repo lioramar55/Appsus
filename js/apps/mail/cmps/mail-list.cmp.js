@@ -12,7 +12,7 @@ export default {
       <tbody>
         <mail-preview v-for="email in emails"
           @click="onSelectEmail(email)"
-          :email="email"></mail-preview>
+          :email="email" @toggleStar="$emit('email-starred', email)"></mail-preview>
       </tbody>
     </table>`,
 

@@ -35,81 +35,12 @@
 
 /* Mail Details */
 
-.mail-details {
-  align-self: flex-start;
-  padding: 2rem;
-  width: 100%;
-  min-height: 100%;
-  box-shadow: 1px 0px 15px -3px #000000;
-}
+
 
 /* ASIDE FILTER */
 
-.aside-filter {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  order: -1;
-  flex-basis: 20%;
-}
 
-.aside-filter .active {
-  background-color: #e8eaed;
-  width: 15rem;
-  height: 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-}
-
-.aside-filter li {
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.aside-filter .compose-btn {
-  border: none;
-  padding: 0.5rem 1rem;
-  align-self: flex-start;
-  border-radius: 1rem;
-  box-shadow: 1px 0px 15px -3px #000000;
-  background-color: white;
-  cursor: pointer;
-}
-
-.aside-filter .compose-btn:hover {
-  text-align: left;
-  border-radius: 1rem;
-  box-shadow: 1px 0px 20px -3px #000000;
-}
-
-.aside-filter .activeInbox {
-  background-color: #fce8e6;
-  color: #d93025;
-  width: 15rem;
-  height: 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-}
 
 /* Mail preview */
 
-.mail-preview {
-  cursor: default;
-}
 
-.mail-preview:hover {
-  outline: 1px solid #333;
-  /* box-shadow: 2px 6px 8px 2px #333; */
-}
-
-.unread {
-  font-weight: 600;
-  color: #333;
-}
-.read {
-  font-weight: 400;
-  color: #444;
-  background-color: rgba(242, 245, 245, 0.8);
-}

@@ -2,6 +2,7 @@ export default {
   props: ['email'],
   template: `
     <tr :class="isRead" class="mail-preview">
+      <td :class="color" @click.stop="onStarEmail"> <img src="assets/icons/star.png" alt=""> </td>
       <td class="from">{{email.from}}</td>
       <td class="content">
         <span class="subj">{{subject}}</span>
@@ -11,7 +12,9 @@ export default {
     </tr>
   `,
   data() {
-    return {}
+    return {
+      color: null
+    }
   },
   created() {},
   computed: {
@@ -31,4 +34,15 @@ export default {
       return `${date.toLocaleString('default', { month: 'short', day: 'numeric' })}`
     },
   },
+
+  methods: {
+    onStarEmail() {
+      this.$emit('toggleStar', {...this.email})
+      if (this.email.isStarred === true) this.color = 'blank'
+      else this.color = 'yellow'
+      console.log(this.email.isStarred)
+      console.log(this.color)
+    }
+  
+  }
 }
