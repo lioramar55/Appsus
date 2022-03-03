@@ -37,7 +37,7 @@ function _filterByCriteria(emails, criteria) {
     filteredEmails = filteredEmails.filter((email) => email.from === loggedinUser.fullname)
   } else if (criteria.status === 'trash') {
     filteredEmails = emails.filter((email) => email.removedAt)
- } else if (criteria.status === 'starred') {
+  } else if (criteria.status === 'starred') {
     filteredEmails = emails.filter((email) => email.isStarred)
   }
 
@@ -52,7 +52,6 @@ function _filterByCriteria(emails, criteria) {
 }
 
 function updateMail(email) {
-  email.isRead = true
   return storageService.put(emailsKey, email)
 }
 
@@ -80,7 +79,7 @@ function _createEmails() {
       isRead: false,
       sentAt: Date.now(),
       to: 'user@appsus.com',
-      isStarred: false
+      isStarred: false,
     },
     {
       id: utilService.makeId(),
@@ -90,7 +89,7 @@ function _createEmails() {
       isRead: false,
       sentAt: 165157810994,
       to: 'user@appsus.com',
-      isStarred: false
+      isStarred: false,
     },
     {
       id: utilService.makeId(),
@@ -100,7 +99,7 @@ function _createEmails() {
       isRead: false,
       sentAt: 165157810994,
       to: 'puki@walla.com',
-      isStarred: false
+      isStarred: false,
     },
     {
       id: utilService.makeId(),
@@ -110,7 +109,7 @@ function _createEmails() {
       isRead: false,
       sentAt: 1551133930594,
       to: 'user@appsus.com',
-      isStarred: false
+      isStarred: false,
     },
     {
       id: utilService.makeId(),
@@ -120,7 +119,7 @@ function _createEmails() {
       isRead: true,
       sentAt: 150133936594,
       to: 'user@appsus.com',
-      isStarred: false
+      isStarred: false,
     },
     {
       id: utilService.makeId(),
@@ -130,7 +129,7 @@ function _createEmails() {
       isRead: true,
       sentAt: 155120930594,
       to: 'user@appsus.com',
-      isStarred: false
+      isStarred: false,
     },
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails

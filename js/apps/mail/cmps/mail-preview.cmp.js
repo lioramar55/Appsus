@@ -1,9 +1,14 @@
 export default {
+  //          "
+
   props: ['email'],
   template: `
-    <tr :class="isRead" class="mail-preview">
-      <td :class="color" @click.stop="onStarEmail"> <img src="assets/icons/star.png" alt=""> </td>
-      <td class="from">{{email.from}}</td>
+    <tr  :class="isRead"
+      @click.stop="$emit('open-email')"  
+      class="mail-preview">
+      <td @click.stop="$emit('email-starred')"
+        ><img :src="starImg"></td>
+      <td  class="from">{{email.from}}</td>
       <td class="content">
         <span class="subj">{{subject}}</span>
         <span class="body">{{formmatedBody}}</span>
@@ -12,14 +17,15 @@ export default {
     </tr>
   `,
   data() {
-    return {
-      color: null
-    }
+    return {}
   },
   created() {},
   computed: {
     isRead() {
       return this.email.isRead ? 'read' : 'unread'
+    },
+    starImg() {
+      return this.email.isStarred ? 'assets/icons/starred.png' : 'assets/icons/star.png'
     },
     subject() {
       return this.email.subject ? this.email.subject : 'No subject'
@@ -31,18 +37,10 @@ export default {
     },
     sentAt() {
       let date = new Date(this.email.sentAt)
-      return `${date.toLocaleString('default', { month: 'short', day: 'numeric' })}`
+      let formmatedDate = date.toLocaleString('default', { month: 'short', day: 'numeric' })
+      return `${formmatedDate}`
     },
   },
 
-  methods: {
-    onStarEmail() {
-      this.$emit('toggleStar', {...this.email})
-      if (this.email.isStarred === true) this.color = 'blank'
-      else this.color = 'yellow'
-      console.log(this.email.isStarred)
-      console.log(this.color)
-    }
-  
-  }
+  methods: {},
 }

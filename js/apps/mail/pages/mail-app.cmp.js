@@ -25,8 +25,8 @@ export default {
       criteria: {
         status: 'inbox',
         txt: '',
-        // isRead: null,
-        // isStared: true,
+        isRead: null,
+        isStared: null,
         // lables: ['important', 'romantic']
       },
       isComposeMail: false,
@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     onOpenEmail(email) {
+      email.isRead = true
       mailService.updateMail(email).then((email) => {
         this.selectedEmail = email
         mailService.query().then((emails) => {
@@ -51,15 +52,14 @@ export default {
           this.$router.push(`/mail/details/${email.id}`)
         })
       })
-     
     },
 
     onEmailStar(email) {
-        console.log(email)
-       email.isStarred = !email.isStarred
-       mailService.updateMail(email)
-       
-        
+      email.isStarred = !email.isStarred
+      mailService.updateMail(email).then((updatedEmail) => {
+        let idx = this.emails.findIndex((email) => email.id === updatedEmail.id)
+        this.emails.splice(idx, 1, updatedEmail)
+      })
     },
 
     sendNewMail(newEmail) {
