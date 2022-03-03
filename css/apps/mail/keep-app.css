@@ -1,10 +1,46 @@
 .notes {
-  /* display: grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, 30%); */
-  column-count: 4;
 }
 
 .note-preview {
-  background-color: #333;
+  flex-basis: 32%;
+  min-height: 120px;
+  border-radius: 0.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.note-preview {
+  height: calc(100%-60px);
+}
+
+.note-preview:hover {
+  outline: 2px solid #333;
+}
+
+.note-edit {
+  background-color: rgba(68, 68, 68, 0.6);
+  flex-basis: 60px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.2rem;
+}
+
+.note-edit .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.note-edit button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }

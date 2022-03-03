@@ -1,6 +1,6 @@
 export default {
-  props: ['info'],
+  props: ['note'],
   template: `
-    <iframe width="300" height="168.9" :src="info.src" :title="info.title" frameborder="0" allowfullscreen></iframe>
+    <iframe height="168.9" :src="note.info.src" :title="note.info.title" frameborder="0" allowfullscreen></iframe>
   `,
 }

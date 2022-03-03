@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     onEditNote(action) {
-      this.isModalOpen = true
+      console.log('action', action)
+      // this.isModalOpen = true
     },
     // toggleModal() {
     //   this.isModalOpen = !this.isModalOpen

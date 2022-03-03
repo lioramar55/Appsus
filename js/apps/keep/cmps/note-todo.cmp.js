@@ -1,6 +1,6 @@
 export default {
-  props: ['info'],
+  props: ['note'],
   template: `
-    <pre>{{info}}</pre>
+    <pre>{{note.info}}</pre>
   `,
 }

@@ -1,20 +1,24 @@
-import noteEdit from './note-edit.cmp.js'
+import noteBtns from './note-btns.cmp.js'
 
 export default {
   props: ['note'],
   template: `
     <h2>Edit note</h2>
-    <note-edit></note-edit>
+    <note-edit @edit-action="onEditNote"></note-edit>
   `,
   data() {
     return {}
   },
   components: {
-    noteEdit,
+    noteBtns,
   },
   created() {},
   components: {},
-  methods: {},
+  methods: {
+    onEditNote(action) {
+      console.log('action', action)
+    },
+  },
   computed: {},
   unmounted: {},
 }

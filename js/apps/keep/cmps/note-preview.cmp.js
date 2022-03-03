@@ -1,4 +1,4 @@
-import noteEdit from './note-edit.cmp.js'
+import noteBtns from './note-btns.cmp.js'
 import noteTxt from './note-txt.cmp.js'
 import noteVideo from './note-video.cmp.js'
 import noteImg from './note-img.cmp.js'
@@ -8,16 +8,16 @@ export default {
   props: ['note'],
   template: `
   <article class="note-preview">
-    <component :is="note.type" 
-    :info="note.info" @inform="onAction"></component>
-    <!-- <note-edit></note-edit> -->
+    <component class="note-content" :is="note.type" 
+    :note="note" @inform="onAction"></component>
+    <note-btns @edit-action="onEditAction"></note-btns>
   </article>
   `,
   data() {
     return {}
   },
   components: {
-    noteEdit,
+    noteBtns,
     noteTxt,
     noteVideo,
     noteImg,
@@ -26,7 +26,17 @@ export default {
   created() {},
   methods: {
     onAction(action) {
+      console.log('action', action)
       this.$emit('edit-note', action)
+    },
+    onEditAction(action) {
+      switch (action) {
+        case 'paint':
+          break
+
+        default:
+          break
+      }
     },
   },
 }
