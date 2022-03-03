@@ -171,3 +171,9 @@
 .input-wrap button:hover {
   outline: none;
 }
+
+/* Note todos */
+
+.done {
+  text-decoration: line-through;
+}

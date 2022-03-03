@@ -1,9 +1,8 @@
-import { noteService } from '../services/note-service.js'
 import noteBtns from './note-btns.cmp.js'
 import noteTxt from './note-txt.cmp.js'
 import noteVideo from './note-video.cmp.js'
 import noteImg from './note-img.cmp.js'
-import noteTodo from './note-todo.cmp.js'
+import noteTodos from './note-todos.cmp.js'
 
 export default {
   props: ['note'],
@@ -22,12 +21,12 @@ export default {
     noteTxt,
     noteVideo,
     noteImg,
-    noteTodo,
+    noteTodos,
   },
   created() {},
   methods: {
-    onAction(action) {
-      this.$emit('edit-note', action)
+    onAction(action, value, note) {
+      this.$emit('edit-note', action, value, note)
     },
     onEditAction(action, value) {
       this.$emit('edit-note', action, value, { ...this.note })

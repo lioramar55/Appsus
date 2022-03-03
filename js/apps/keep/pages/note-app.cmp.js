@@ -46,6 +46,12 @@ export default {
         })
       )
     },
+    updateNotes() {
+      noteService.query().then((notes) => {
+        this.pinnedNotes = notes.filter((note) => note.isPinned)
+        this.notes = notes.filter((note) => !note.isPinned)
+      })
+    },
     onEditNote(action, value, oldNote) {
       let noteToUpdate = JSON.parse(JSON.stringify({ ...oldNote }))
       switch (action) {
@@ -61,12 +67,9 @@ export default {
           break
         case 'pinned':
           noteToUpdate.isPinned = !noteToUpdate.isPinned
-          noteService.updateNote(noteToUpdate).then(() =>
-            noteService.query().then((notes) => {
-              this.pinnedNotes = notes.filter((note) => note.isPinned)
-              this.notes = notes.filter((note) => !note.isPinned)
-            })
-          )
+          noteService
+            .updateNote(noteToUpdate)
+            .then(() => noteService.query().then(this.updateNotes))
           break
         case 'delete':
           noteService.removeTodo(noteToUpdate.id).then(() => {
@@ -75,8 +78,13 @@ export default {
               this.notes = notes.filter((note) => !note.isPinned)
             })
           })
+        case 'toggle-todo':
+          let todos = noteToUpdate.info.todos
+          let idx = todos.findIndex((todo) => todo.txt === value)
+          todos[idx].doneAt = todos[idx].doneAt ? null : Date.now()
+          noteService.updateNote(noteToUpdate).then(this.updateNotes)
+          break
       }
     },
   },
-  computed: {},
 }

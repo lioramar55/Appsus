@@ -52,22 +52,45 @@ function _createNotes() {
       id: utilService.makeId(),
       type: 'note-img',
       info: {
-        url: 'https://images.unsplash.com/photo-1645930916050-523c86d40078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        title: 'Bobi and Me',
+        url: 'https://images.unsplash.com/photo-1646225717344-765484703a03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+        title: 'The megalithic structure Stonehenge',
       },
       style: {
         backgroundColor: '#00d',
       },
     },
+
     {
       id: utilService.makeId(),
       type: 'note-video',
       info: {
-        src: 'https://www.youtube.com/embed/w8HdOHrc3OQ',
+        src: 'https://www.youtube.com/embed/uH78GUo2TOs',
         title: 'Sultans of swing',
       },
       style: {
-        backgroundColor: '#00d',
+        backgroundColor: '',
+      },
+    },
+    {
+      id: utilService.makeId(),
+      type: 'note-img',
+      info: {
+        url: 'https://images.unsplash.com/photo-1645930916050-523c86d40078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+        title: 'Bobi and Me',
+      },
+      style: {
+        backgroundColor: 'tomato',
+      },
+    },
+    {
+      id: utilService.makeId(),
+      type: 'note-img',
+      info: {
+        url: 'https://images.unsplash.com/photo-1592610687683-41d676fcda72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+        title: 'Mount Rushmore',
+      },
+      style: {
+        backgroundColor: 'salmon',
       },
     },
     {
@@ -96,7 +119,7 @@ function _createNotes() {
       },
     },
   ]
-  let notes = utilService.loadFromStorage(notesKey)
+  let notes = utilService.loadFromStorage(notesKey) || []
   if (notes) {
     notes = notes.length > 0 ? notes : baseNotes
   }
