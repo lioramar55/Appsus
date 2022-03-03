@@ -4,29 +4,26 @@
   width: 100%;
 }
 
+.mail-list {
+  width: 50rem;
+}
+
+.mail-list table {
+  width: 100%;
+}
+
 .mail-app {
   font-family: roboto;
   font-size: 1.2rem;
 }
 
-.mail-list {
-  flex-basis: 100%;
-}
-
-
-
 .mail-filter {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1rem;
   padding: 1rem 0;
   flex-direction: column;
-  
-}
-
-.mail-filter img {
-  width: 100px;
-  height: 50px;
 }
 
 .mail-filter input {

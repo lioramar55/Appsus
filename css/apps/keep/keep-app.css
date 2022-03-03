@@ -1,3 +1,7 @@
+.note-app {
+  padding-top: 2rem;
+}
+
 .notes,
 .pinned-notes {
   display: grid;
@@ -18,6 +22,10 @@
   padding: 1rem;
 }
 
+.note-preview h2 {
+  font-family: Roboto;
+}
+
 .note-preview:hover {
   outline: 2px solid #333;
 }
@@ -26,11 +34,9 @@
 
 .note-edit {
   background-color: rgba(68, 68, 68, 0.6);
-  flex-basis: 60px;
   display: flex;
   align-items: center;
-  width: 100%;
-
+  width: 112%;
   padding: 0.2rem;
 }
 
@@ -38,7 +44,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -49,8 +55,6 @@
 }
 
 /* Note-Btns */
-.note-btns {
-}
 
 .pallete {
   width: 100%;
@@ -82,9 +86,7 @@
 /* Note Add */
 
 .note-add {
-  outline: 2px solid #333;
   display: flex;
-  width: 60%;
   border-radius: 0.5rem;
   margin: 0 auto;
   flex-direction: column;
@@ -104,9 +106,6 @@
 
 .note-add input:focus-within {
   outline: none;
-}
-
-.note-add button image {
 }
 
 .note-add nav button {
@@ -132,6 +131,11 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.input-wrap button img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .input-wrap button:hover {
   outline: none;

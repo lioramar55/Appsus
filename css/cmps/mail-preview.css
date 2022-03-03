@@ -1,24 +1,23 @@
-
-
 .mail-preview {
-    cursor: default;
-    height: 2rem;
-  }
-  
-  .mail-preview:hover {
-    outline: 1px solid #333;
-    /* box-shadow: 2px 6px 8px 2px #333; */
-  }
-  
-  .unread {
-    font-weight: 600;
-    color: #333;
-  }
-  .read {
-    font-weight: 400;
-    color: #444;
-    background-color: rgba(242, 245, 245, 0.8);
-  }
+  cursor: default;
+  height: 2rem;
+  min-width: 100%;
+}
+
+.mail-preview:hover {
+  outline: 1px solid #333;
+  /* box-shadow: 2px 6px 8px 2px #333; */
+}
+
+.unread {
+  font-weight: 600;
+  color: #333;
+}
+.read {
+  font-weight: 400;
+  color: #444;
+  background-color: rgba(242, 245, 245, 0.8);
+}
 
 .mail-preview img {
   width: 1.2rem;

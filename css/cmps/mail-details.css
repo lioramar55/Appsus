@@ -1,10 +1,10 @@
 .mail-details {
-    align-self: flex-start;
-    padding: 2rem;
-    width: 100%;
-    min-height: 100%;
-    box-shadow: 1px 0px 15px -3px #000000;
-    overflow-wrap: break-word;
+  align-self: center;
+  padding: 1rem;
+  width: 100%;
+  min-height: 80%;
+  box-shadow: 1px 0px 15px -3px #000000;
+  overflow-wrap: break-word;
 }
 
 .mail-details nav {
@@ -17,11 +17,9 @@
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
-  
 }
 
 .mail-details button {
   border: none;
   background-color: white;
 }
-
