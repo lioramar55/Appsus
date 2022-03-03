@@ -67,8 +67,14 @@ export default {
               this.notes = notes.filter((note) => !note.isPinned)
             })
           )
-
           break
+        case 'delete':
+          noteService.removeTodo(noteToUpdate.id).then(() => {
+            noteService.query().then((notes) => {
+              this.pinnedNotes = notes.filter((note) => note.isPinned)
+              this.notes = notes.filter((note) => !note.isPinned)
+            })
+          })
       }
     },
   },

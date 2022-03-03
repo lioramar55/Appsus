@@ -5,7 +5,7 @@ export default {
       <div  class="note-add-layout">
         <input v-if="isAddingNote" type="text" v-model="note.info.title" placeholder="Choose a title">
         <div class="input-wrap">
-          <input type="text" @focus="inputFocused" v-model="note.info.txt" :placeholder="placeholderTxt">
+          <input type="text" @focus="inputFocused" v-model="input" :placeholder="placeholderTxt">
           <note-add-btns @set-type="changeType" v-if="!isAddingNote"></note-add-btns>
         </div>
         <nav v-if="isAddingNote">
@@ -30,7 +30,6 @@ export default {
       note: {
         info: {
           title: '',
-          txt: '',
         },
         style: {
           backgroundColor: '',
@@ -38,6 +37,7 @@ export default {
         type: 'note-txt',
         isPinned: false,
       },
+      input: '',
       pickedColor: '#333',
       colorPalleteOpen: false,
       colors: ['#333', '#999', 'salmon', 'lightgreen', 'tomato', 'lightcyan'],
@@ -64,6 +64,16 @@ export default {
       this.note.content = ''
     },
     onSave() {
+      switch (this.note.type) {
+        case 'note-img' || 'note-video' || 'note-audio':
+          this.note.info.url = this.input
+          break
+        case 'note-txt':
+          this.note.info.txt = this.input
+          break
+        case 'note-todos':
+          this.note.info.todo = this.input.split(',').map((txt) => ({ txt, doneAt: null }))
+      }
       this.$emit('add-note', { ...this.note })
       this.closeAddNote()
     },

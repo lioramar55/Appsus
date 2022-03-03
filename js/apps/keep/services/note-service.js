@@ -7,12 +7,17 @@ export const noteService = {
   query,
   updateNote,
   postNote,
+  removeTodo,
 }
 const notesKey = 'notesDB'
 _createNotes()
 
 function query() {
   return storageService.query(notesKey)
+}
+
+function removeTodo(id) {
+  return storageService.remove(notesKey, id)
 }
 
 function updateNote(updatedNote) {
@@ -91,6 +96,9 @@ function _createNotes() {
       },
     },
   ]
-  const notes = utilService.loadFromStorage(notesKey) || baseNotes
+  let notes = utilService.loadFromStorage(notesKey)
+  if (notes) {
+    notes = notes.length > 0 ? notes : baseNotes
+  }
   utilService.saveToStorage(notesKey, notes)
 }

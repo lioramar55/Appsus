@@ -16,6 +16,9 @@ export default {
         <button class="icon" @click="$emit('edit-action','edit')">
           <img  src="assets/icons/edit.png">
         </button>
+        <button class="icon" @click="$emit('edit-action','delete')">
+          <img  src="assets/icons/trash.png">
+        </button>
         <button class="icon" @click="$emit('edit-action','export')">
           <img  src="assets/icons/export.png">
         </button>
