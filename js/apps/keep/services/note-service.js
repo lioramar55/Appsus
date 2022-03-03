@@ -6,6 +6,7 @@ import { utilService } from '../../../services/util-service.js'
 export const noteService = {
   query,
   updateNote,
+  postNote,
 }
 const notesKey = 'notesDB'
 _createNotes()
@@ -16,6 +17,10 @@ function query() {
 
 function updateNote(updatedNote) {
   return storageService.put(notesKey, updatedNote)
+}
+
+function postNote(newNote) {
+  return storageService.post(notesKey, newNote)
 }
 
 function _createNotes() {

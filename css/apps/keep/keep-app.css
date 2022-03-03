@@ -1,11 +1,11 @@
-.notes {
+.notes,
+.pinned-notes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1rem;
 }
 
 .note-preview {
-  flex-basis: 32%;
   min-height: 120px;
   border-radius: 0.5rem;
   position: relative;
@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+
   padding: 0.2rem;
 }
 
@@ -76,4 +77,62 @@
 
 .color:hover {
   outline: 2px solid lightblue;
+}
+
+/* Note Add */
+
+.note-add {
+  outline: 2px solid #333;
+  display: flex;
+  width: 60%;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-add input {
+  padding: 0.5rem;
+  width: 20rem;
+  margin: 0.4rem 0;
+  border: none;
+}
+
+.note-add input:first-child {
+  margin-top: 0.4rem;
+}
+
+.note-add input:focus-within {
+  outline: none;
+}
+
+.note-add button image {
+}
+
+.note-add nav button {
+  padding: 0.5rem;
+  outline: 1px solid #333;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0.2rem;
+  padding: 0.25rem, 1rem;
+}
+
+/* Input wrap */
+
+.input-wrap {
+  border-radius: 0.5rem;
+  display: flex;
+  height: 3rem;
+}
+.input-wrap button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.input-wrap button:hover {
+  outline: none;
 }

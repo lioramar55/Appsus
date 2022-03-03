@@ -1,19 +1,19 @@
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteModal from '../cmps/note-modal.cmp.js'
 import { noteService } from '../services/note-service.js'
-// import noteAdd from './apps/keep/cmps/note-add.cmp.js'
+import noteAdd from '../cmps/note-add.cmp.js'
 
 export default {
   template: `
   <section class="note-app main-layout">
-    <!-- <note-add></note-add> -->
+    <note-add @add-note="addNewNote"></note-add>
+    <h2>Pinned notes:</h2>
     <div v-if="pinnedNotes" class="pinned-notes">
-      <h2>Pinned notes:</h2>
       <note-preview  v-for="note in pinnedNotes"
       :note="note"  @edit-note="onEditNote"></note-preview>
     </div>
+    <h2>Your notes:</h2>
     <div class="notes">
-      <h2>Your notes:</h2>
       <note-preview v-if="notes" v-for="note in notes"
       :note="note"  @edit-note="onEditNote"></note-preview>
     </div>
@@ -35,20 +35,29 @@ export default {
   },
   components: {
     notePreview,
-    // noteAdd,
+    noteAdd,
     noteModal,
   },
   methods: {
+    addNewNote(newNote) {
+      noteService.postNote({ ...newNote }).then(
+        noteService.query().then((notes) => {
+          this.notes = notes
+        })
+      )
+    },
     onEditNote(action, value, oldNote) {
       let noteToUpdate = JSON.parse(JSON.stringify({ ...oldNote }))
       switch (action) {
         case 'paint':
           noteToUpdate.style = { backgroundColor: value }
-          noteService.updateNote(note).then((updatedNote) => {
+          noteService.updateNote(noteToUpdate).then((updatedNote) => {
             let idx = this.notes.findIndex((note) => note.id === updatedNote.id)
-            this.notes.splice(idx, 1, updatedNote)
+            if (idx === -1) {
+              idx = this.pinnedNotes.findIndex((note) => note.id === updatedNote.id)
+              this.pinnedNotes.splice(idx, 1, updatedNote)
+            } else this.notes.splice(idx, 1, updatedNote)
           })
-
           break
         case 'pinned':
           noteToUpdate.isPinned = !noteToUpdate.isPinned
