@@ -1,16 +1,14 @@
+import noteAddBtns from './note-add-btns.cmp.js'
 export default {
   template: `
     <div class="note-add">
       <input v-if="isAddingNote" type="text" v-model="note.info.title" placeholder="Choose a title">
       <div class="input-wrap">
         <input type="text" @focus="inputFocused" v-model="note.info.txt" :placeholder="placeholderTxt">
-        <button @click="changeType('note-txt')"><img src="assets/icons/text.png"></button>
-        <button @click="changeType('note-img')"><img src="assets/icons/image.png"></button>
-        <button @click="changeType('note-video')"><img src="assets/icons/video.png"></button>
-        <button @click="changeType('note-audio')"><img src="assets/icons/audio.png"></button>
-        <button @click="changeType('note-todo')"><img src="assets/icons/list.png"></button>
+        <note-add-btns @set-type="changeType" v-if="!isAddingNote"></note-add-btns>
       </div>
       <nav v-if="isAddingNote">
+        <note-add-btns @set-type="changeType"></note-add-btns>
         <button @click="closeAddNote">Close</button>
         <button @click="onSave">Save</button>
       </nav>
@@ -31,6 +29,9 @@ export default {
         isPinned: false,
       },
     }
+  },
+  components: {
+    noteAddBtns,
   },
   methods: {
     changeType(type) {
