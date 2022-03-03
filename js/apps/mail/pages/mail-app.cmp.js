@@ -70,7 +70,6 @@ export default {
     },
 
     setFilter(key, status) {
-      console.log('key, status', key, status)
       this.criteria[key] = status
       mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
     },
