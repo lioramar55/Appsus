@@ -1,21 +1,21 @@
 export default {
   template: `
         <aside class="aside-filter">
-            <button @click="$emit('compose-mail')" class="compose btn">Compose</button>
+            <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
             <ul class="clean-list">
-                <li @click="$emit('status-filter','status',  'inbox')">
+                <li :class="{ activeInbox: isInboxActive }" @click="sendInboxEmit($event,'inbox')">
                     Inbox
                 </li>
-                <li @click="$emit('status-filter','status',  'sent')">
+                <li :class="{ active: isSendActive }" @click="sendEmit($event,'sent')">
                     Sent
                 </li>
-                <li  @click="$emit('status-filter','isStared',  true)">
+                <li :class="{ active: isStarredActive }" @click="sendEmit($event,'starred')">
                     Starred
                 </li>
-                <li @click="$emit('status-filter','status',  'drafts')">
+                <li  :class="{ active: isDraftsActive }" @click="sendEmit($event,'drafts')">
                     Drafts
                 </li>
-                <li @click="$emit('status-filter','status',  'trash')">
+                <li :class="{ active: isTrashActive }"  @click="sendEmit($event,'trash')">
                     Trash
                 </li>
             </ul>
@@ -23,10 +23,28 @@ export default {
     `,
   data() {
     return {
-      filterBy: {
-        status: '',
-      },
+      isInboxActive: false,
+      isSendActive: false,
+      isStarredActive: false,
+      isDraftsActive: false,
+      isTrashActive:false
     }
   },
-  methods: {},
+
+  computed: {
+
+  },
+  methods: {
+    sendEmit(event, statusVal) {
+      event.target.classList.add('active')
+      this.$emit('status-filter','status', statusVal)
+    },
+
+    sendInboxEmit(event, statusVal) {
+      event.target.classList.add('activeInbox')
+      this.$emit('status-filter','status', statusVal)
+    }
+
+  },
 }
+ 

@@ -27,6 +27,7 @@ export default {
         isRead: false,
         sentAt: Date.now(),
       },
+      
     }
   },
   created() {},
@@ -35,5 +36,7 @@ export default {
     onPostMail() {
       this.$emit('mail-sent', { ...this.mail })
     },
+   
+ 
   },
 }

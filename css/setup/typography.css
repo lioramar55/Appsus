@@ -14,3 +14,10 @@
   font-family: eurof;
   src: url('../../assets/fonts/eurof/eurof55.ttf');
 }
+
+@font-face {
+  font-family: roboto;
+  src: url('../../assets/fonts/roboto/Roboto-Regular.ttf');
+}
+
+
