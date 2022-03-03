@@ -15,9 +15,7 @@ export default {
   created() {},
   components: {},
   methods: {
-    onEditNote(action) {
-      console.log('action', action)
-    },
+    onEditNote(action) {},
   },
   computed: {},
   unmounted: {},

@@ -72,8 +72,9 @@ export default {
           this.note.info.txt = this.input
           break
         case 'note-todos':
-          this.note.info.todo = this.input.split(',').map((txt) => ({ txt, doneAt: null }))
+          this.note.info.todos = this.input.split(',').map((txt) => ({ txt, doneAt: null }))
       }
+      this.input = ''
       this.$emit('add-note', { ...this.note })
       this.closeAddNote()
     },
@@ -91,8 +92,8 @@ export default {
         case 'note-video':
           text = 'Enter video URL...'
           break
-        case 'note-todo':
-          text = 'Enter comma seperated list...'
+        case 'note-todos':
+          text = 'Enter a comma seperated list...'
           break
         case 'note-audio':
           text = 'Enter audio URL...'

@@ -64,11 +64,10 @@ export default {
     },
 
     sendNewMail(newEmail) {
-      console.log('hi')
       this.isComposeMail = !this.isComposeMail
-      mailService.postMail(newEmail)
-      .then(mailService.query({...this.criteria})
-      .then((emails) => (this.emails = emails)))
+      mailService
+        .postMail(newEmail)
+        .then(mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails)))
     },
 
     setFilter(key, status) {

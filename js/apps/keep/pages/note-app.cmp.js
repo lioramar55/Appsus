@@ -40,11 +40,7 @@ export default {
   },
   methods: {
     addNewNote(newNote) {
-      noteService.postNote({ ...newNote }).then(
-        noteService.query().then((notes) => {
-          this.notes = notes
-        })
-      )
+      noteService.postNote({ ...newNote }).then(this.updateNotes)
     },
     updateNotes() {
       noteService.query().then((notes) => {
