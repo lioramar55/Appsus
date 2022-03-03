@@ -22,6 +22,7 @@ export default {
     return {
       emails: [],
       selectedEmail: null,
+      email: null,
       criteria: {
         status: 'inbox',
         txt: '',
@@ -64,9 +65,9 @@ export default {
 
     sendNewMail(newEmail) {
       this.isComposeMail = !this.isComposeMail
-      mailService
-        .postMail(newEmail)
-        .then(mailService.query().then((emails) => (this.emails = emails)))
+      mailService.postMail(newEmail)
+      .then(mailService.query({...this.criteria})
+      .then((emails) => (this.emails = emails)))
     },
 
     setFilter(key, status) {

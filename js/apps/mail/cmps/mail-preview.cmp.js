@@ -10,7 +10,7 @@ export default {
         ><img :src="starImg"></td>
       <td  class="from">{{email.from}}</td>
       <td class="content">
-        <span class="subj">{{subject}}</span>
+        <span class="subj">{{subject}} - </span>
         <span class="body">{{formmatedBody}}</span>
       </td>
       <td class="time-sent">{{sentAt}}</td> 
