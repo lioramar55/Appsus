@@ -5,12 +5,17 @@ import { utilService } from '../../../services/util-service.js'
 
 export const noteService = {
   query,
+  updateNote,
 }
 const notesKey = 'notesDB'
 _createNotes()
 
 function query() {
   return storageService.query(notesKey)
+}
+
+function updateNote(updatedNote) {
+  return storageService.put(notesKey, updatedNote)
 }
 
 function _createNotes() {
@@ -20,7 +25,8 @@ function _createNotes() {
       type: 'note-txt',
       isPinned: true,
       info: {
-        txt: 'Fullstack Me Baby!',
+        title: 'Hello Vue!',
+        txt: 'Fullstack Me Baby! ',
       },
     },
     {
@@ -28,6 +34,7 @@ function _createNotes() {
       type: 'note-txt',
       isPinned: true,
       info: {
+        title: 'It seems like',
         txt: "We're gonna make it!",
       },
     },
@@ -47,10 +54,24 @@ function _createNotes() {
       type: 'note-video',
       info: {
         src: 'https://www.youtube.com/embed/w8HdOHrc3OQ',
-        title: 'Bobi and Me',
+        title: 'Sultans of swing',
       },
       style: {
         backgroundColor: '#00d',
+      },
+    },
+    {
+      id: utilService.makeId(),
+      type: 'note-txt',
+      info: {
+        title: 'כללי מסחר',
+        txt: `1. כל טרייד יתועד ביומן טריידים לאחר הכניסה לטרייד.
+              2. לא לסכן יותר מ3 אחוז חשבון בטרייד
+              3. בTrading Range - לזכור Buy Low Sell High, להיות מוכן גם בניסיונות פריצה תמיד לחכות לFollow Through
+              4. לא להכנס לטרייד בעבודה או אצל חברים, להכנס רק במצב ריכוז מלא`,
+      },
+      style: {
+        backgroundColor: '#555',
       },
     },
     {

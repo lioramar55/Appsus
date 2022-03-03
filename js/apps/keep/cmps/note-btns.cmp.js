@@ -8,14 +8,10 @@ export default {
         <button @click="$emit('edit-action','duplicated')">
           <img  src="assets/icons/duplicate.png">
         </button>
-        <div class="pallete">
           <button @click="onPaint">
             <img  src="assets/icons/paint.png">
           </button>
-          <div v-if="colorPalleteOpen" class="color-picker">
-            <div v-for="color in colors" :style="{'background-color': color}" class="color"></div>
-          </div>
-        </div>
+       
         <button @click="$emit('edit-action','edit')">
           <img  src="assets/icons/edit.png">
         </button>
@@ -23,19 +19,27 @@ export default {
           <img  src="assets/icons/export.png">
         </button>
       </div>
-      
+      <div v-if="colorPalleteOpen" class="color-picker">
+        <div v-for="color in colors" 
+        :style="{'background-color': color}" 
+        @click="setPaintColor(color)" class="color"></div>
+      </div>
     </section>
   `,
   data() {
     return {
       colorPalleteOpen: false,
-      colors: ['#333', '#A6F', 'aaa', 'lightcyan'],
+      colors: ['#333', '#999', 'salmon', 'lightgreen', 'lightcyan'],
     }
   },
   methods: {
     onPaint() {
-      this.colorPalleteOpen = true
+      this.colorPalleteOpen = !this.colorPalleteOpen
       // this.$emit('edit-action', 'paint')
+    },
+    setPaintColor(color) {
+      this.$emit('edit-action', 'paint', color)
+      this.colorPalleteOpen = !this.colorPalleteOpen
     },
   },
 }

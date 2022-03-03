@@ -11,11 +11,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.note-preview {
-  height: calc(100%-60px);
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  height: fit-content;
+  padding: 1rem;
 }
 
 .note-preview:hover {
@@ -52,13 +52,29 @@
 }
 
 .pallete {
+  width: 100%;
+
   position: relative;
 }
 
 .color-picker {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+  transform: translateY(150%);
 }
 
-.color-picker .color {
+.color {
+  border: 1px solid #333;
   border-radius: 50%;
+  gap: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.color:hover {
+  outline: 2px solid lightblue;
 }

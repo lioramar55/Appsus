@@ -29,9 +29,18 @@ export default {
     noteModal,
   },
   methods: {
-    onEditNote(action) {
-      console.log('action', action)
-      // this.isModalOpen = true
+    onEditNote(action, value, note) {
+      switch (action) {
+        case 'paint':
+          note.style = { backgroundColor: value }
+          noteService.updateNote(note).then((updatedNote) => {
+            let idx = this.notes.findIndex((note) => note.id === updatedNote.id)
+            this.notes.splice(idx, 1, updatedNote)
+          })
+          break
+        default:
+          break
+      }
     },
     // toggleModal() {
     //   this.isModalOpen = !this.isModalOpen

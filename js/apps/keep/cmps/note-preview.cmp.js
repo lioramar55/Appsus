@@ -1,3 +1,4 @@
+import { noteService } from '../services/note-service.js'
 import noteBtns from './note-btns.cmp.js'
 import noteTxt from './note-txt.cmp.js'
 import noteVideo from './note-video.cmp.js'
@@ -7,7 +8,7 @@ import noteTodo from './note-todo.cmp.js'
 export default {
   props: ['note'],
   template: `
-  <article class="note-preview">
+  <article class="note-preview" :style="noteStyle">
     <component class="note-content" :is="note.type" 
     :note="note" @inform="onAction"></component>
     <note-btns @edit-action="onEditAction"></note-btns>
@@ -26,17 +27,15 @@ export default {
   created() {},
   methods: {
     onAction(action) {
-      console.log('action', action)
       this.$emit('edit-note', action)
     },
-    onEditAction(action) {
-      switch (action) {
-        case 'paint':
-          break
-
-        default:
-          break
-      }
+    onEditAction(action, value) {
+      this.$emit('edit-note', action, value, { ...this.note })
+    },
+  },
+  computed: {
+    noteStyle() {
+      return this.note.style ? { 'background-color': this.note.style.backgroundColor } : ''
     },
   },
 }
