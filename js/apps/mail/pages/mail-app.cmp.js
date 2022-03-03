@@ -29,9 +29,11 @@ export default {
         // lables: ['important', 'romantic']
       },
       isComposeMail: false,
+      // folder: null,
     }
   },
   created() {
+    // this.folder = this.$route.params.folder ? this.$route.params.folder : this.criteria.status
     mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
   },
   components: {

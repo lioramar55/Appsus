@@ -8,7 +8,7 @@ export default {
         <button @click="$emit('edit-action','duplicated')">
           <img  src="assets/icons/duplicate.png">
         </button>
-        <button @click="$emit('edit-action','paint')">
+        <button @click="onPaint">
           <img  src="assets/icons/paint.png">
         </button>
         <button @click="$emit('edit-action','edit')">
@@ -18,6 +18,12 @@ export default {
           <img  src="assets/icons/export.png">
         </button>
       </div>
+      
     </section>
   `,
+  methods: {
+    onPaint() {
+      this.$emit('edit-action', 'paint')
+    },
+  },
 }

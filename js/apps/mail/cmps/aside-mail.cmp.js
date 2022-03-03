@@ -1,21 +1,22 @@
 export default {
+  props: ['folder'],
   template: `
         <aside class="aside-filter">
             <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
             <ul class="clean-list">
-                <li :class="{ activeInbox: isInboxActive }" @click="sendInboxEmit($event,'inbox')">
+                <li :class="{ activeInbox: activeFolder === 'inbox' }" @click="sendInboxEmit('inbox')">
                     Inbox
                 </li>
-                <li :class="{ active: isSendActive }" @click="sendEmit($event,'sent')">
+                <li :class="{ active: activeFolder === 'sent' }" @click="sendEmit('sent')">
                     Sent
                 </li>
-                <li :class="{ active: isStarredActive }" @click="sendEmit($event,'starred')">
+                <li :class="{ active: activeFolder === 'starred' }" @click="sendEmit('starred')">
                     Starred
                 </li>
-                <li  :class="{ active: isDraftsActive }" @click="sendEmit($event,'drafts')">
+                <li  :class="{ active: activeFolder === 'drafts' }" @click="sendEmit('drafts')">
                     Drafts
                 </li>
-                <li :class="{ active: isTrashActive }"  @click="sendEmit($event,'trash')">
+                <li :class="{ active: activeFolder === 'trash' }"  @click="sendEmit('trash')">
                     Trash
                 </li>
             </ul>
@@ -24,27 +25,20 @@ export default {
   data() {
     return {
       isInboxActive: false,
-      isSendActive: false,
-      isStarredActive: false,
-      isDraftsActive: false,
-      isTrashActive:false
+      activeFolder: 'inbox',
     }
   },
 
-  computed: {
-
-  },
+  computed: {},
   methods: {
-    sendEmit(event, statusVal) {
-      event.target.classList.add('active')
-      this.$emit('status-filter','status', statusVal)
+    sendEmit(statusVal) {
+      this.activeFolder = statusVal
+      this.$emit('status-filter', 'status', statusVal)
     },
 
-    sendInboxEmit(event, statusVal) {
-      event.target.classList.add('activeInbox')
-      this.$emit('status-filter','status', statusVal)
-    }
-
+    sendInboxEmit(statusVal) {
+      this.activeFolder = statusVal
+      this.$emit('status-filter', 'status', statusVal)
+    },
   },
 }
- 
