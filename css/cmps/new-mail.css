@@ -6,6 +6,15 @@
   box-shadow: 4px 4px 9px 2px rgba(0, 0, 0, 0.6);
 }
 
+.new-mail.compose-mail {
+  position: static;
+  margin: auto;
+}
+
+.new-mail.compose-mail h1 {
+  padding: 0.5rem 0;
+}
+
 .new-mail form {
   position: relative;
   display: flex;
@@ -19,7 +28,6 @@
   resize: none;
   width: 29rem;
   height: 29rem;
-  
 }
 
 .new-mail form input {
@@ -28,13 +36,17 @@
 
 .new-mail form button {
   text-transform: capitalize;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.06rem;
   background-color: #1a73e8;
+  border-radius: 0.5rem;
   cursor: pointer;
-  border: none;
-  border: 0.5px solid none;
+  border: 0.5px solid #333;
   color: white;
+  margin: 0.5rem 0;
 }
 
 .new-mail .close {

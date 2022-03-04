@@ -158,7 +158,9 @@ export default {
             .then(eventBus.emit('show-msg', { txt: 'Note duplicated', type: 'success' }))
           break
         case 'export':
-          console.log('onExport')
+          this.$router.push(
+            `/mail/compose?title=${noteToUpdate.info.title}&body=${noteToUpdate.info.txt}`
+          )
           break
         case 'edit':
           this.selectedNote = noteToUpdate
