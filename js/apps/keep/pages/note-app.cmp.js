@@ -17,12 +17,14 @@ export default {
       <note-preview v-if="notes" v-for="note in notes"
       :note="note"  @edit-note="onEditNote"></note-preview>
     </div>
-    <note-modal v-if="isModalOpen"></note-modal>
+    <note-modal v-if="isModalOpen" 
+     @save-and-close='saveNote' :note="selectedNote"></note-modal>
   </section>
   `,
   data() {
     return {
       isModalOpen: false,
+      selectedNote: null,
       notes: null,
       pinnedNotes: null,
     }
@@ -48,8 +50,15 @@ export default {
         this.notes = notes.filter((note) => !note.isPinned)
       })
     },
+    saveNote(newNote, oldNote) {
+      this.isModalOpen = !this.isModalOpen
+      let savedNote = JSON.parse(JSON.stringify(oldNote))
+      savedNote.info.txt = newNote.txt
+      savedNote.info.title = newNote.title
+      noteService.updateNote(savedNote).then(this.updateNotes)
+    },
     onEditNote(action, value, oldNote) {
-      let noteToUpdate = JSON.parse(JSON.stringify({ ...oldNote }))
+      let noteToUpdate = JSON.parse(JSON.stringify(oldNote))
       switch (action) {
         case 'paint':
           noteToUpdate.style = { backgroundColor: value }
@@ -68,12 +77,8 @@ export default {
             .then(() => noteService.query().then(this.updateNotes))
           break
         case 'delete':
-          noteService.removeTodo(noteToUpdate.id).then(() => {
-            noteService.query().then((notes) => {
-              this.pinnedNotes = notes.filter((note) => note.isPinned)
-              this.notes = notes.filter((note) => !note.isPinned)
-            })
-          })
+          noteService.removeTodo(noteToUpdate.id).then(this.updateNotes)
+          break
         case 'toggle-todo':
           let todos = noteToUpdate.info.todos
           let idx = todos.findIndex((todo) => todo.txt === value)
@@ -83,6 +88,13 @@ export default {
         case 'duplicate':
           noteToUpdate.isPinned = false
           noteService.postNote(noteToUpdate).then(this.updateNotes)
+          break
+        case 'export':
+          console.log('onExport')
+          break
+        case 'edit':
+          this.selectedNote = noteToUpdate
+          this.isModalOpen = true
           break
       }
     },
