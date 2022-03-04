@@ -1,7 +1,6 @@
 import mailList from '../cmps/mail-list.cmp.js'
 import mailDetails from '../cmps/mail-details.cmp.js'
 import mailFilter from '../cmps/mail-filter.cmp.js'
-import mailSort from '../cmps/mail-sort.cmp.js'
 import asideMail from '../cmps/aside-mail.cmp.js'
 import newMail from '../cmps/new-mail.cmp.js'
 import { mailService } from '../services/mail-service.js'
@@ -9,9 +8,7 @@ import { mailService } from '../services/mail-service.js'
 export default {
   template: `
     <section class="mail-app main-layout">
-      <mail-sort @set-sort="setSort"></mail-sort>
-
-      <mail-filter @set-filter="setFilter"></mail-filter>
+      <mail-filter @set-sort="setSort" @set-filter="setFilter"></mail-filter>
       <div class="mail-layout">
         <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
         <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
@@ -34,23 +31,25 @@ export default {
         isStared: null,
         // lables: ['important', 'romantic']
       },
+      sort: {
+        by: '',
+        dir: 1,
+      },
       isComposeMail: false,
       unRead: null,
-
-      
     }
   },
   created() {
-    mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
-    .then((emails) => emails.filter(email => !email.isRead))
-    .then((unReadedEmails) => (this.unRead = unReadedEmails.length))
-    
+    mailService
+      .query({ ...this.criteria })
+      .then((emails) => (this.emails = emails))
+      .then((emails) => emails.filter((email) => !email.isRead))
+      .then((unReadedEmails) => (this.unRead = unReadedEmails.length))
   },
   components: {
     mailList,
     mailDetails,
     mailFilter,
-    mailSort,
     asideMail,
     newMail,
   },
@@ -87,20 +86,15 @@ export default {
     },
 
     setSort(sortBy) {
-    if (sortBy === 'title') {
-      this.emails.sort(function (a, b) {
-        return a.subject.localeCompare(b.subject);
-      }); 
-      console.log(this.emails) 
-    }
-    if (sortBy === 'date') {
-      this.emails.sort((a, b) => b.sentAt - a.sentAt)
-
-    }
-  }
-
+      if (this.sort.by === sortBy) this.sort.dir = -1 * this.sort.dir
+      if (sortBy === 'title') {
+        this.sort.by = sortBy
+        this.emails.sort((a, b) => a.subject.localeCompare(b.subject) * this.sort.dir)
+      }
+      if (sortBy === 'date') {
+        this.sort.by = sortBy
+        this.emails.sort((a, b) => (b.sentAt - a.sentAt) * this.sort.dir)
+      }
+    },
+  },
 }
-    
-}
-
-

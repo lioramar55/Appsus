@@ -72,7 +72,6 @@ function deleteMail(mail) {
 }
 
 function postMail(mail) {
-  console.log('mail', mail)
   return storageService.post(emailsKey, mail)
 }
 

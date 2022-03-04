@@ -69,7 +69,6 @@ export default {
         }
       } else {
         if (value) {
-          console.log('value', value)
           const regex = new RegExp(value, 'i')
           noteService.query().then((notes) => {
             this.notes = notes.filter(

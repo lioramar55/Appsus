@@ -10,6 +10,8 @@ export default {
             <option >Read</option>
             <option >Unread</option>
           </select>
+              <button @click="$emit('set-sort','title')">Sort by title</button>
+              <button @click="$emit('set-sort','date')">Sort by date</button>
         </section>
     `,
   data() {

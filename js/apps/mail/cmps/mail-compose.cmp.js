@@ -30,7 +30,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.query)
     this.mail.subject = this.$route.query.title
     this.mail.body = this.$route.query.body
   },
