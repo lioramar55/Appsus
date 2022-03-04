@@ -41,7 +41,17 @@ export default {
 
       pickedColor: '#333',
       colorPalleteOpen: false,
-      colors: ['#333', '#999', 'salmon', 'lightgreen', 'tomato', 'lightcyan'],
+      colors: [
+        '#333',
+        'orange',
+        '#635D19',
+        '#42275E',
+        'skyblue',
+        'salmon',
+        'lightgreen',
+        'tomato',
+        'lightcyan',
+      ],
     }
   },
   components: {

@@ -33,7 +33,17 @@ export default {
   data() {
     return {
       colorPalleteOpen: false,
-      colors: ['#333', '#999', 'salmon', 'lightgreen', 'tomato', 'lightcyan'],
+      colors: [
+        '#333',
+        'orange',
+        '#635D19',
+        '#42275E',
+        'skyblue',
+        'salmon',
+        'lightgreen',
+        'tomato',
+        'lightcyan',
+      ],
       isPinned: null,
     }
   },

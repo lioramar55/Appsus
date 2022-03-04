@@ -27,7 +27,9 @@ export default {
     <note-modal v-if="isModalOpen" 
      @save-and-close='saveNote' :note="selectedNote"></note-modal>
   </section>
-  `,
+            
+            
+            `,
   data() {
     return {
       isModalOpen: false,
