@@ -80,6 +80,10 @@ export default {
           todos[idx].doneAt = todos[idx].doneAt ? null : Date.now()
           noteService.updateNote(noteToUpdate).then(this.updateNotes)
           break
+        case 'duplicate':
+          noteToUpdate.isPinned = false
+          noteService.postNote(noteToUpdate).then(this.updateNotes)
+          break
       }
     },
   },

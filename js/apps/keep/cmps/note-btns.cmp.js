@@ -6,7 +6,7 @@ export default {
         <button class="icon" @click="onPin">
           <img  :src="isPinnedImg">
         </button>
-        <button class="icon" @click="$emit('edit-action','duplicated')">
+        <button class="icon" @click="$emit('edit-action','duplicate')">
           <img  src="assets/icons/duplicate.png">
         </button>
           <button class="icon" @click="onPaint">
