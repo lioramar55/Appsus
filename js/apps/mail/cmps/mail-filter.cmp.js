@@ -5,13 +5,15 @@ export default {
               <input v-on:keyup.enter="setFilter('txt')" type="text" name="text" v-model="filterBy.txt" 
               placeholder="Search for email" />
           </label>
-          <select value="All" @change="setFilter('isRead')" v-model="filterBy.isRead">
-            <option >All</option>
-            <option >Read</option>
-            <option >Unread</option>
-          </select>
-              <button @click="$emit('set-sort','title')">Sort by title</button>
-              <button @click="$emit('set-sort','date')">Sort by date</button>
+          <div class="wrap">
+            <select value="All" @change="setFilter('isRead')" v-model="filterBy.isRead">
+              <option >All</option>
+              <option >Read</option>
+              <option >Unread</option>
+            </select>
+            <button @click="$emit('set-sort','title')">Sort by title</button>
+            <button @click="$emit('set-sort','date')">Sort by date</button>
+          </div>
         </section>
     `,
   data() {

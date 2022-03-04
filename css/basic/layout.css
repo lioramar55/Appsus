@@ -4,7 +4,8 @@
 }
 
 .main-app {
-  height: 100%;
+  height: 100vh;
   display: grid;
-  grid-template-rows: 5vh minmax(90vh, 90%) 5vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 8fr 80px;
 }

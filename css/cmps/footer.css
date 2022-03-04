@@ -1,13 +1,11 @@
 .app-footer {
-    height: 9rem;
-    background-color: black;
-    padding: 3em 0;
-    text-align: center;
-    background-color: rgb(37, 37, 37);
-    bottom: 0;
-    border-top: solid black 0.5rem;
+  background-color: black;
+  background-color: rgb(37, 37, 37);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app-footer small {
-    color: rgb(187, 187, 187);;
+  color: rgb(187, 187, 187);
 }

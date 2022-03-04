@@ -19,11 +19,23 @@
 
 .mail-filter {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
   padding: 1rem 0;
-  flex-direction: column;
+}
+
+.mail-filter button {
+  background-color: transparent;
+  border: none;
+  outline: 1px solid #333;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.mail-filter .wrap > * {
+  margin: 0.5rem;
 }
 
 .mail-filter input {
@@ -31,13 +43,18 @@
   height: 2.8rem;
   border-radius: 0.3rem;
   border: none;
-  box-shadow: 1px 0px 15px -3px #000000;
+  box-shadow: 1px 0px 10px -3px #333;
+}
+
+.mail-filter input:focus {
+  border: none;
+  outline: none;
 }
 
 .mail-filter select {
   width: 5rem;
   height: 2rem;
-  box-shadow: 1px 0px 15px -3px #000000;
+  box-shadow: 1px 0px 10px -3px #333;
   margin-top: 0.5rem;
   border: none;
 }

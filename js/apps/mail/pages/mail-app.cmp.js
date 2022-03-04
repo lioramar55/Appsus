@@ -67,22 +67,27 @@ export default {
 
     onEmailStar(email) {
       email.isStarred = !email.isStarred
-      mailService.updateMail(email).then((updatedEmail) => {
-        let idx = this.emails.findIndex((email) => email.id === updatedEmail.id)
-        this.emails.splice(idx, 1, updatedEmail)
-      })
+      mailService
+        .updateMail(email)
+        .then((updatedEmail) => {
+          let idx = this.emails.findIndex((email) => email.id === updatedEmail.id)
+          this.emails.splice(idx, 1, updatedEmail)
+        })
+        .then(this.updateEmails)
     },
 
     sendNewMail(newEmail) {
       this.isComposeMail = !this.isComposeMail
-      mailService
-        .postMail(newEmail)
-        .then(mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails)))
+      mailService.postMail(newEmail).then(this.updateEmails)
+    },
+
+    updateEmails() {
+      mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
     },
 
     setFilter(key, status) {
       this.criteria[key] = status
-      mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
+      this.updateEmails()
     },
 
     setSort(sortBy) {
