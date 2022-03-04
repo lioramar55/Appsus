@@ -1,4 +1,5 @@
 import noteAddBtns from './note-add-btns.cmp.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 export default {
   template: `
     <div :style="{'background-color': pickedColor}" class="note-add">
@@ -32,11 +33,12 @@ export default {
         style: {
           backgroundColor: '',
         },
-        title: '',
         type: 'note-txt',
         isPinned: false,
       },
       input: '',
+      title: '',
+
       pickedColor: '#333',
       colorPalleteOpen: false,
       colors: ['#333', '#999', 'salmon', 'lightgreen', 'tomato', 'lightcyan'],
@@ -60,9 +62,14 @@ export default {
     closeAddNote() {
       this.isAddingNote = false
       this.title = ''
+      this.pickedColor = '#333'
       this.input = ''
     },
     onSave() {
+      if (!this.title && !this.input) {
+        eventBus.emit('show-msg', { txt: 'Saving requires content', type: 'error' })
+        return
+      }
       let type = this.note.type
       if (type === 'note-img' || type === 'note-audio') {
         this.note.info.url = this.input
@@ -98,6 +105,8 @@ export default {
       }
       this.input = ''
       this.title = ''
+      this.pickedColor = '#333'
+
       this.$emit('add-note', { ...this.note })
       this.closeAddNote()
     },

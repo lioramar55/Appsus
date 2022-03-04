@@ -94,7 +94,10 @@ export default {
       this.selectedNote = JSON.parse(JSON.stringify(note))
     },
     addNewNote(newNote) {
-      noteService.postNote({ ...newNote }).then(this.updateNotes)
+      noteService
+        .postNote({ ...newNote })
+        .then(this.updateNotes)
+        .then(eventBus.emit('show-msg', { txt: 'Note added', type: 'success' }))
     },
     updateNotes() {
       noteService.query().then((notes) => {
@@ -107,7 +110,10 @@ export default {
       let savedNote = JSON.parse(JSON.stringify(oldNote))
       savedNote.info.txt = newNote.txt
       savedNote.info.title = newNote.title
-      noteService.updateNote(savedNote).then(this.updateNotes)
+      noteService
+        .updateNote(savedNote)
+        .then(this.updateNotes)
+        .then(eventBus.emit('show-msg', { txt: 'Note saved', type: 'success' }))
     },
     onEditNote(action, value, oldNote) {
       let noteToUpdate = JSON.parse(JSON.stringify(oldNote))
