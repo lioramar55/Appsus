@@ -15,6 +15,7 @@ export default {
       </td>
       <td class="time-sent">{{sentAt}}</td> 
     </tr>
+    
   `,
   data() {
     return {}
