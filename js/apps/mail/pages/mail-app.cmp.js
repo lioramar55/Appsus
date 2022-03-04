@@ -14,9 +14,10 @@ export default {
         <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
         <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
       </div>
+      <div>Unread {{unRead}}</div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
-       <div>read {{read}}</div>
+       
     </section>
   `,
   data() {
@@ -32,13 +33,13 @@ export default {
         // lables: ['important', 'romantic']
       },
       isComposeMail: false,
-      read: null,
+      unRead: null,
     }
   },
   created() {
     mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
-    .then((emails) => emails.filter(email => email.isRead === true))
-    .then((readedEmails) => (this.read = readedEmails.length))
+    .then((emails) => emails.filter(email => !email.isRead))
+    .then((unReadedEmails) => (this.unRead = unReadedEmails.length))
     
   },
   components: {
