@@ -52,7 +52,7 @@ export default {
     },
     modalStyle() {
       let noteStyle = this.note.style
-      if (noteStyle) {
+      if (noteStyle && noteStyle.backgroundColor) {
         return { 'background-color': this.note.style.backgroundColor }
       } else return { 'background-color': '#444' }
     },

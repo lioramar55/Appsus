@@ -1,12 +1,14 @@
+import { noteService } from '../services/note-service.js'
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteModal from '../cmps/note-modal.cmp.js'
-import { noteService } from '../services/note-service.js'
 import noteAdd from '../cmps/note-add.cmp.js'
+import noteFilter from '../cmps/note-filter.cmp.js'
 
 export default {
   template: `
   <section class="note-app main-layout">
     <note-add @add-note="addNewNote"></note-add>
+    <note-filter @set-filter="onSetFilter"></note-filter>
     <h2>Pinned notes:</h2>
     <div v-if="pinnedNotes" class="pinned-notes">
       <note-preview  v-for="note in pinnedNotes"
@@ -31,6 +33,10 @@ export default {
       selectedNote: null,
       notes: null,
       pinnedNotes: null,
+      filterBy: {
+        type: 'all',
+        txt: '',
+      },
     }
   },
   created() {
@@ -42,9 +48,46 @@ export default {
   components: {
     notePreview,
     noteAdd,
+    noteFilter,
     noteModal,
   },
   methods: {
+    onSetFilter(filterBy, value) {
+      if (filterBy === 'type') {
+        if (value === 'all') {
+          this.updateNotes()
+        } else {
+          noteService.query().then((notes) => {
+            this.notes = notes.filter((note) => note.type === value && !note.isPinned)
+            this.pinnedNotes = this.pinnedNotes.filter(
+              (note) => (note.type === value) & note.isPinned
+            )
+          })
+        }
+      } else {
+        if (value) {
+          console.log('value', value)
+          const regex = new RegExp(value, 'i')
+          noteService.query().then((notes) => {
+            this.notes = notes.filter(
+              (note) =>
+                (regex.test(note.info.txt) ||
+                  regex.test(note.info.title) ||
+                  regex.test(note.info.label)) &&
+                !note.isPinned
+            )
+            this.pinnedNotes = notes.filter(
+              (note) =>
+                (regex.test(note.info.txt) ||
+                  regex.test(note.info.title) ||
+                  regex.test(note.info.label)) & note.isPinned
+            )
+          })
+        } else {
+          this.updateNotes()
+        }
+      }
+    },
     openNoteModal(note) {
       this.isModalOpen = true
       this.selectedNote = JSON.parse(JSON.stringify(note))
