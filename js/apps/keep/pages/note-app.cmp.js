@@ -10,12 +10,16 @@ export default {
     <h2>Pinned notes:</h2>
     <div v-if="pinnedNotes" class="pinned-notes">
       <note-preview  v-for="note in pinnedNotes"
-      :note="note"  @edit-note="onEditNote"></note-preview>
+      :note="note"  
+      @edit-note="onEditNote"
+      @open-edit-note="openNoteModal"></note-preview>
     </div>
     <h2>Your notes:</h2>
     <div class="notes">
       <note-preview v-if="notes" v-for="note in notes"
-      :note="note"  @edit-note="onEditNote"></note-preview>
+      :note="note"
+      @open-edit-note="openNoteModal"  
+      @edit-note="onEditNote"></note-preview>
     </div>
     <note-modal v-if="isModalOpen" 
      @save-and-close='saveNote' :note="selectedNote"></note-modal>
@@ -41,6 +45,10 @@ export default {
     noteModal,
   },
   methods: {
+    openNoteModal(note) {
+      this.isModalOpen = true
+      this.selectedNote = JSON.parse(JSON.stringify(note))
+    },
     addNewNote(newNote) {
       noteService.postNote({ ...newNote }).then(this.updateNotes)
     },

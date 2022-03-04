@@ -26,7 +26,9 @@ export default {
   created() {},
   methods: {
     onAction(action, value, note) {
-      this.$emit('edit-note', action, value, note)
+      if (action === 'open-edit-note') {
+        this.$emit(action, value)
+      } else this.$emit('edit-note', action, value, note)
     },
     onEditAction(action, value) {
       this.$emit('edit-note', action, value, { ...this.note })

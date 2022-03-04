@@ -1,7 +1,7 @@
 export default {
   props: ['note'],
   template: `
-    <div @click="$emit('inform', note)" class="note-txt">
+    <div @click="$emit('inform','open-edit-note', note)" class="note-txt">
       <h2>{{noteTitle}}</h2>
       <p>{{note.info.txt}}</p>
     </div>

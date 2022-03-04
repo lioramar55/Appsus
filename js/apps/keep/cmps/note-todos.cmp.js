@@ -1,11 +1,11 @@
 export default {
   props: ['note'],
   template: `
-  <div class="note-todos">
-    <h2>{{note.info.label}}</h2>
+  <div @click="$emit('inform','open-edit-note', note)" class="note-todos">
+    <h2>{{label}}</h2>
     <ul class="clean-list">
       <li v-for="todo in note.info.todos" 
-      @click="onToggleTodo(todo.txt)" 
+      @click.stop="onToggleTodo(todo.txt)" 
       :class="{done: todo.doneAt}">
       {{todo.txt}} 
       <span v-if="todo.doneAt" class="time">{{todo.doneAt}}</span>
@@ -27,6 +27,9 @@ export default {
     formatTime() {
       let date = new Date(this.note.info.todos.doneAt)
       return `${date.getUTCDate()}`
+    },
+    label() {
+      return this.note.info.label ? this.note.info.label : 'Label placeholder'
     },
   },
 }

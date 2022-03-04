@@ -1,9 +1,9 @@
 export default {
   props: ['note'],
   template: `
-  <div class="note-img" @click="$emit('inform')">
+  <div  class="note-img" >
     <h1>{{note.info.title}}</h1>
-    <img  :src="note.info.url">
+    <img @click="$emit('inform', 'open-edit-note', note)" :src="note.info.url">
   </div>
   `,
 }

@@ -41,6 +41,7 @@
 .note-edit .btns {
   display: flex;
   opacity: 0;
+  pointer-events: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -53,6 +54,7 @@
 .note-preview:hover .btns {
   background-color: rgba(68, 68, 68, 0.6);
   opacity: 1;
+  pointer-events: all;
 }
 
 .note-edit .btns img {
@@ -181,6 +183,7 @@
 
 .note-modal {
   position: fixed;
+  z-index: 10;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -189,13 +192,23 @@
   transition: all 0.2s ease-in;
 }
 
-.note-modal textarea {
-  resize: none;
-  background-color: rgba(255, 255, 255, 0.6);
+.note-edit.modal-btns .btns {
+  opacity: 1;
+  pointer-events: all;
+  justify-content: flex-start;
+  padding: 0;
 }
 
 .note-modal .close {
-  position: absolute;
-  bottom: 3%;
-  right: 6%;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.note-modal .btn-section {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
 }

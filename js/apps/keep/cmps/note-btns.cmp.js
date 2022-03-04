@@ -1,19 +1,19 @@
 export default {
-  props: ['note'],
+  props: ['note', 'isNoteModal'],
   template: `
     <section class="note-edit">
       <div class="btns">
         <button class="icon" @click="onPin">
           <img  :src="isPinnedImg">
         </button>
-        <button class="icon" @click="$emit('edit-action','duplicate')">
+        <button v-if="!isNoteModal" class="icon" @click="$emit('edit-action','duplicate')">
           <img  src="assets/icons/duplicate.png">
         </button>
           <button class="icon" @click="onPaint">
             <img  src="assets/icons/paint.png">
           </button>
        
-        <button class="icon" @click="$emit('edit-action','edit')">
+        <button v-if="!isNoteModal" class="icon" @click="$emit('edit-action','edit')">
           <img  src="assets/icons/edit.png">
         </button>
         <button class="icon" @click="$emit('edit-action','delete')">

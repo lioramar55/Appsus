@@ -3,7 +3,7 @@ export default {
   template: `
     <div :style="{'background-color': pickedColor}" class="note-add">
       <div  class="note-add-layout">
-        <input v-if="isAddingNote" type="text" v-model="note.info.title" placeholder="Choose a title">
+        <input v-if="isAddingNote" type="text" v-model="title" placeholder="Choose a title">
         <div class="input-wrap">
           <input type="text" @focus="inputFocused" v-model="input" :placeholder="placeholderTxt">
           <note-add-btns @set-type="changeType" v-if="!isAddingNote"></note-add-btns>
@@ -28,12 +28,11 @@ export default {
     return {
       isAddingNote: false,
       note: {
-        info: {
-          title: '',
-        },
+        info: {},
         style: {
           backgroundColor: '',
         },
+        title: '',
         type: 'note-txt',
         isPinned: false,
       },
@@ -60,14 +59,16 @@ export default {
     },
     closeAddNote() {
       this.isAddingNote = false
-      this.note.title = ''
-      this.note.txt = ''
+      this.title = ''
+      this.input = ''
     },
     onSave() {
       let type = this.note.type
       if (type === 'note-img' || type === 'note-audio') {
         this.note.info.url = this.input
+        this.note.info.title = this.title
       } else if (type === 'note-video') {
+        this.note.info.title = this.title
         if (this.input.search('embed') === -1) {
           let urlArray = this.input.split('/')
           let videoIdIdx = urlArray[urlArray.length - 1].search('v=')
@@ -88,12 +89,15 @@ export default {
 
       switch (type) {
         case 'note-txt':
+          this.note.info.title = this.title
           this.note.info.txt = this.input
           break
         case 'note-todos':
+          this.note.info.label = this.title
           this.note.info.todos = this.input.split(',').map((txt) => ({ txt, doneAt: null }))
       }
       this.input = ''
+      this.title = ''
       this.$emit('add-note', { ...this.note })
       this.closeAddNote()
     },
