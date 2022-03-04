@@ -1,4 +1,5 @@
 import { noteService } from '../services/note-service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 import notePreview from '../cmps/note-preview.cmp.js'
 import noteModal from '../cmps/note-modal.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
@@ -113,22 +114,27 @@ export default {
       switch (action) {
         case 'paint':
           noteToUpdate.style = { backgroundColor: value }
-          noteService.updateNote(noteToUpdate).then((updatedNote) => {
-            let idx = this.notes.findIndex((note) => note.id === updatedNote.id)
-            if (idx === -1) {
-              idx = this.pinnedNotes.findIndex((note) => note.id === updatedNote.id)
-              this.pinnedNotes.splice(idx, 1, updatedNote)
-            } else this.notes.splice(idx, 1, updatedNote)
-          })
+          noteService
+            .updateNote(noteToUpdate)
+            .then((updatedNote) => {
+              let idx = this.notes.findIndex((note) => note.id === updatedNote.id)
+              if (idx === -1) {
+                idx = this.pinnedNotes.findIndex((note) => note.id === updatedNote.id)
+                this.pinnedNotes.splice(idx, 1, updatedNote)
+              } else this.notes.splice(idx, 1, updatedNote)
+            })
+            .then(eventBus.emit('show-msg', { txt: 'Color changed', type: 'success' }))
           break
         case 'pinned':
           noteToUpdate.isPinned = !noteToUpdate.isPinned
           noteService
             .updateNote(noteToUpdate)
             .then(() => noteService.query().then(this.updateNotes))
+            .then(eventBus.emit('show-msg', { txt: 'Note pinned', type: 'success' }))
           break
         case 'delete':
           noteService.removeTodo(noteToUpdate.id).then(this.updateNotes)
+          eventBus.emit('show-msg', { txt: 'Note removed', type: 'remove' })
           break
         case 'toggle-todo':
           let todos = noteToUpdate.info.todos
@@ -138,7 +144,10 @@ export default {
           break
         case 'duplicate':
           noteToUpdate.isPinned = false
-          noteService.postNote(noteToUpdate).then(this.updateNotes)
+          noteService
+            .postNote(noteToUpdate)
+            .then(this.updateNotes)
+            .then(eventBus.emit('show-msg', { txt: 'Note duplicated', type: 'success' }))
           break
         case 'export':
           console.log('onExport')

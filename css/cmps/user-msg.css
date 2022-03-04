@@ -1,0 +1,21 @@
+.user-msg {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  border-radius: 1rem;
+  color: aliceblue;
+  padding: 0.6rem 4rem;
+}
+
+.success,
+.add {
+  background-color: limegreen;
+}
+
+.remove {
+  background-color: tomato;
+}
+
+.error {
+  background-color: red;
+}
