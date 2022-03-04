@@ -16,6 +16,7 @@ export default {
       </div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
+       <div>read {{read}}</div>
     </section>
   `,
   data() {
@@ -31,10 +32,14 @@ export default {
         // lables: ['important', 'romantic']
       },
       isComposeMail: false,
+      read: null,
     }
   },
   created() {
     mailService.query({ ...this.criteria }).then((emails) => (this.emails = emails))
+    .then((emails) => emails.filter(email => email.isRead === true))
+    .then((readedEmails) => (this.read = readedEmails.length))
+    
   },
   components: {
     mailList,

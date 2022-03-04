@@ -4,7 +4,7 @@ export default {
   props: ['email'],
   template: `
     <tr  :class="isRead"
-      @click.stop="$emit('open-email')"  
+      @click.stop="onOpenEmail"  
       class="mail-preview">
       <td @click.stop="$emit('email-starred')"
         ><img :src="starImg"></td>
@@ -42,5 +42,9 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    onOpenEmail() {
+      this.$emit('open-email')
+    }
+  },
 }

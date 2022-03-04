@@ -18,7 +18,9 @@ export default {
 
         </mail-preview>
       </tbody>
-    </table>`,
+    </table>
+</section>
+    `,
 
   components: {
     mailPreview,
