@@ -86,8 +86,6 @@ export default {
         }
       }
 
-      console.log('this.note.info.url', this.note.info.url)
-
       switch (type) {
         case 'note-txt':
           this.note.info.txt = this.input

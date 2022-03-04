@@ -45,7 +45,7 @@ function _createNotes() {
       isPinned: true,
       info: {
         title: 'It seems like',
-        txt: "We're gonna make it!",
+        txt: "We're really going to make it!\nHard at first but then it becomes easier!",
       },
     },
     {
@@ -113,8 +113,11 @@ function _createNotes() {
       info: {
         label: 'Get my stuff together',
         todos: [
-          { txt: 'Driving liscence', doneAt: null },
+          { txt: 'Master Vue', doneAt: Date.now() },
+          { txt: 'Driving license', doneAt: null },
+          { txt: 'Haircut', doneAt: null },
           { txt: 'Coding power', doneAt: 187111111 },
+          { txt: 'Take the dog to the vet', doneAt: null },
         ],
       },
     },
