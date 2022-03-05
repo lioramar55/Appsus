@@ -70,22 +70,14 @@ export default {
 
     markAsRead(email) {
       email.isRead = true
-      mailService.updateMail(email).then((email) => {
-        this.selectedEmail = email
-        mailService.query().then((emails) => {
-          this.emails = emails
-        })
-      })
+      mailService.updateMail({...email})
+      .then(this.updateEmails)
     },
 
     markAsUnread(email) {
       email.isRead = false
-      mailService.updateMail(email).then((email) => {
-        this.selectedEmail = email
-        mailService.query().then((emails) => {
-          this.emails = emails
-        })
-      })
+      mailService.updateMail(email)
+      .then(this.updateEmails)
     },
 
     onEmailStar(email) {
