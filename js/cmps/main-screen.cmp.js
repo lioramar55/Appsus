@@ -1,4 +1,3 @@
-import { eventBus } from '../services/eventBus-service.js'
 
 export default {
   template: `
@@ -10,7 +9,10 @@ export default {
   created() {},
   methods: {
     toggleMenu() {
-      document.body.classList.toggle('show-menu')
+      if(document.body.classList.contains('show-menu')){
+        document.body.classList.toggle('show-menu')
+      }else  document.body.classList.toggle('show-mail-menu')
+
     },
   },
 }

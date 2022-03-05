@@ -4,7 +4,7 @@ export default {
         <aside class="aside-filter">
             <ul class="main-aside-list clean-list">
               <li>
-              <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
+              <button @click="onComposeMail" class="compose-btn">Compose</button>
               </li>
                 <li :class="{ activeInbox: activeFolder === 'inbox' }" @click="sendInboxEmit('inbox')">
                     Inbox
@@ -22,7 +22,7 @@ export default {
                     Trash
                 </li>
             </ul>
-            <button @click="showMailMenu" class="nav-burger"><img src="assets/icons/nav-burger.png"></button>
+            <button @click="showMailMenu" class="nav-mail-burger"><img src="assets/icons/nav-burger.png"></button>
         </aside>
     `,
   data() {
@@ -37,15 +37,22 @@ export default {
     sendEmit(statusVal) {
       this.activeFolder = statusVal
       this.$emit('status-filter', 'status', statusVal)
+      document.body.classList.toggle('show-mail-menu')
     },
 
     sendInboxEmit(statusVal) {
       this.activeFolder = statusVal
       this.$emit('status-filter', 'status', statusVal)
+      document.body.classList.toggle('show-mail-menu')
     },
 
     showMailMenu() {
       document.body.classList.toggle('show-mail-menu')
     },
+
+    onComposeMail() {
+      this.$emit('compose-mail')
+      document.body.classList.toggle('show-mail-menu')
+    }
   },
 }

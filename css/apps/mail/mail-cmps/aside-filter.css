@@ -37,6 +37,7 @@
 }
 .aside-filter .compose-btn:hover {
   box-shadow: 1px 0px 20px -3px #000000;
+  background-color: none;
 }
 
 .aside-filter .activeInbox {

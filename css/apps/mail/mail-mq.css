@@ -14,8 +14,8 @@
     width: 40%;
     height: 100%;
     opacity: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: flex-end;
     background-color: #ff980f;
     transform: translateX(100%);
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -26,6 +26,17 @@
         opacity: 1;
       }
 
+      .nav-mail-burger {
+        border: none;
+        background-color: white;
+        cursor: pointer;
+      }
+
+      body.show-mail-menu .main-screen {
+        opacity: 1;
+        pointer-events: auto;    
+      }
+    
 }
 
 /* SMALL */
@@ -52,7 +63,7 @@
         height: 20rem;
       }
 
-      .btn-menu {
+      .nav-mail-burger {
           display: none;
       }
 
