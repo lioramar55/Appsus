@@ -14,19 +14,21 @@ export default {
         <span class="subj">{{subject}} - </span>
         <span class="body">{{formmatedBody}}</span>
       </td>
-      <td class="time-sent">{{sentAt}}</td> 
-      <td v-if="hovered"><button @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png" alt=""></button></td>
-      <td v-if="hovered && email.isRead"><button @click.stop="$emit('unread-email')"><img title="Mark as unread mail" src="assets/icons/mark-as-unread.png" alt=""></button></td>
-      <td v-if="hovered && !email.isRead"><button @click.stop="$emit('read-email')"><img title="Mark as read mail" src="assets/icons/mark-as-read.png" alt=""></button></td>
-
+      <td class="time-sent">
+        <span v-if="!hovered" class="time">{{sentAt}}</span>
+        <div v-if="hovered" class="mail-btns">
+          <button @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png"></button>
+          <button v-if="email.isRead" @click.stop="$emit('unread-email')"><img title="Mark as unread mail" src="assets/icons/mark-as-unread.png"></button>
+          <button v-if="!email.isRead" @click.stop="$emit('read-email')"><img title="Mark as read mail" src="assets/icons/mark-as-read.png"></button>
+        </div>
+      </td> 
     </tr>
     
   `,
 
-  
   data() {
     return {
-      hovered: false
+      hovered: false,
     }
   },
   created() {},
@@ -38,11 +40,14 @@ export default {
       return this.email.isStarred ? 'assets/icons/starred.png' : 'assets/icons/star.png'
     },
     subject() {
-      return this.email.subject ? this.email.subject : 'No subject'
+      if (!this.email.subject) return 'No subject'
+      const text =
+        this.email.subject > 16 ? this.email.subject.slice(0, 14) + '...' : this.email.subject
+      return text
     },
     formmatedBody() {
       const text =
-        this.email.body.length > 50 ? this.email.body.slice(0, 48) + '...' : this.email.body
+        this.email.body.length > 35 ? this.email.body.slice(0, 32) + '...' : this.email.body
       return text
     },
     sentAt() {
@@ -55,7 +60,6 @@ export default {
   methods: {
     onOpenEmail() {
       this.$emit('open-email')
-    }
+    },
   },
-
 }

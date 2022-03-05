@@ -18,7 +18,6 @@ export default {
         @delete-email="$emit('delete-email', email)"
         @read-email="$emit('read-email', email)"
         @unread-email="$emit('unread-email', email)"
-
          >
         </mail-preview>
       </tbody>

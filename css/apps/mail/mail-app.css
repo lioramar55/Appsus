@@ -5,10 +5,9 @@
   font-family: lato;
 }
 
-
-
 .mail-list table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 .mail-filter {
@@ -20,16 +19,11 @@
   background-color: #ff980f;
 }
 
-.mail-filter .logo {
-text-align: left;
-align-self: left;
-}
-
 .mail-filter button {
   background-color: #ffae42;
   border: none;
   padding: 0.25rem 0.5rem;
-  cursor:pointer;
+  cursor: pointer;
   height: 3rem;
 }
 
@@ -41,26 +35,19 @@ align-self: left;
   margin: 0.5rem;
 }
 
-.mail-filter input, .mail-filter select {
+.mail-filter input,
+.mail-filter select {
   width: 25rem;
   height: 2.8rem;
   border: none;
-  background-color: #ffae42 ;
+  background-color: #ffae42;
 }
 
 .mail-filter select {
   width: 5rem;
-
 }
 
 .mail-filter input:focus {
   border: none;
   outline: none;
 }
-
-
-
-
-
-
-

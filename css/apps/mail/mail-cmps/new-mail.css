@@ -1,16 +1,14 @@
-
 .new-mail {
-  padding: 1rem;
   position: fixed;
-  bottom: 10vh;
-  left: 10vh;
+  padding: 1rem;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  width: 60%;
+  height: 30rem;
   box-shadow: 4px 4px 9px 2px rgba(0, 0, 0, 0.6);
   z-index: 10;
-}
-
-.new-mail.compose-mail {
-  position: static;
-  margin: auto;
+  transform: translate(-50%, -50%);
 }
 
 .new-mail.compose-mail h1 {
@@ -21,23 +19,24 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  width: 30rem;
-  height: 30rem;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
 }
 
 .new-mail textarea {
   resize: none;
-  width: 29rem;
-  height: 29rem;
+  width: 90%;
+  height: 80%;
 }
 
 .new-mail form input {
-  width: 29rem;
+  width: 90%;
 }
 
 .new-mail form button {
   text-transform: capitalize;
+  align-self: flex-start;
   padding: 0.5rem 1rem;
   border-radius: 0.2rem;
   font-weight: 600;

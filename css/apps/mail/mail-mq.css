@@ -1,12 +1,12 @@
 /* MOBILE-ONLY */
 
 @media (max-width: 860px) {
-    .main-mail-layout {
-        max-width: 600px;
-        margin: 0 auto;
-    }
+  .main-mail-layout {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 
-    .main-aside-list {
+  .main-aside-list {
     display: flex;
     position: fixed;
     flex-direction: column;
@@ -15,78 +15,79 @@
     width: 40%;
     height: 100%;
     opacity: 0;
+    pointer-events: none;
     justify-content: flex-start;
     align-items: center;
     background-color: #ff980f;
-    transform: translateX(100%);
+    transform: translateX(-100%);
     transition: transform 0.2s ease, opacity 0.2s ease;
-    }
+  }
 
-    body.show-mail-menu .main-aside-list {
-        transform: rotateX(0);
-        opacity: 1;
-      }
+  body.show-mail-menu .main-aside-list {
+    transform: rotateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
 
-      .nav-mail-burger {
-        border: none;
-        background-color: white;
-        cursor: pointer;
-        height: 3.5rem;
-        width: 3.5rem;
-      }
+  body.show-mail-menu ul {
+    margin: 0;
+  }
 
-      body.show-mail-menu .main-screen {
-        opacity: 1;
-        pointer-events: auto;    
-      }
-    
+  .nav-mail-burger {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  body.show-mail-menu .main-screen {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 /* SMALL */
 
 @media (min-width: 660px) {
-    .main-mail-layout {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
+  .main-mail-layout {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 /* MEDIUM */
 
-@media (min-width:860px) {
-    .mail-layout {
-    display: flex; 
-      
-      }
+@media (min-width: 860px) {
+  .mail-layout {
+    display: flex;
+  }
 
-      .mail-list {
-        width: 50rem;
-      }
+  .mail-list {
+    width: 50rem;
+  }
 
+  .main-mail-layout {
+    max-width: 800px;
+  }
+  .aside-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    order: -1;
+    flex-basis: 20%;
+    height: 20rem;
+  }
 
-    .main-mail-layout {
-        max-width: 800px;
-    }
-    .aside-filter {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        order: -1;
-        flex-basis: 20%;
-        height: 20rem;
-      }
-
-      .nav-mail-burger {
-          display: none;
-      }
-
+  .nav-mail-burger {
+    display: none;
+  }
 }
 
 /* LARGE */
 
 @media (min-width: 980px) {
-    .main-mail-layout {
-        max-width: 1080px;
-    }
+  .main-mail-layout {
+    max-width: 1080px;
+  }
 }
