@@ -21,8 +21,14 @@ export default {
               <router-link to="/mail">Mail</router-link>
             </li>        
           </ul>
+          <button @click="showMenu" class="nav-burger"><img src="assets/icons/nav-burger.png"></button>
         </nav>
       </section>
     </header>
     `,
+  methods: {
+    showMenu() {
+      document.body.classList.toggle('show-menu')
+    },
+  },
 }
