@@ -7,7 +7,7 @@ import noteTodos from './note-todos.cmp.js'
 export default {
   props: ['note'],
   template: `
-  <article class="note-preview" :style="noteStyle">
+  <article class="note-preview" :class="note.id" :style="noteStyle">
     <component class="note-content" :is="note.type" 
     :note="note" @inform="onAction"></component>
     <note-btns :note="note" @edit-action="onEditAction"></note-btns>

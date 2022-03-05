@@ -21,6 +21,7 @@ export default {
     <div class="notes">
       <note-preview v-if="notes" v-for="note in notes"
       :note="note"
+      :key="note.id"
       @open-edit-note="openNoteModal"  
       @edit-note="onEditNote"></note-preview>
     </div>
@@ -49,24 +50,29 @@ export default {
     })
   },
   mounted() {
-    // interact('.note-preview')
-    //   .draggable({
-    //     listeners: {
-    //       start(event) {
-    //         console.log('event.type, event.target', event.type, event.target)
-    //       },
-    //       move(event) {
-    //         let position = { x: event.target.offsetX, y: event.target.offsetY }
-    //         console.log('event.target', event.target)
-    //         position.x += event.dx
-    //         position.y += event.dy
-    //       },
-    //     },
-    //   })
-    //   .dropzone({
-    //     accept: '.note-preview',
-    //     overlap: 0.6,
-    //   })
+    interact('.note-preview')
+      .draggable({
+        onmove: this.onMove,
+      })
+      .dropzone({
+        accept: '.note-preview',
+        overlap: 0.8,
+        checker: (
+          dragEvent, // related dragmove or dragend
+          event, // Touch, Pointer or Mouse Event
+          dropped, // bool default checker result
+          dropzone, // dropzone Interactable
+          dropzoneElement, // dropzone element
+          draggable, // draggable Interactable
+          draggableElement // draggable element
+        ) => {
+          let dragId = draggableElement.classList.value.split(' ')[1]
+          let dropId = dropzoneElement.classList.value.split(' ')[1]
+          if (dropzone && dropped) {
+            this.swapElements(dragId, dropId)
+          }
+        },
+      })
   },
   components: {
     notePreview,
@@ -75,6 +81,32 @@ export default {
     noteModal,
   },
   methods: {
+    swapElements(firstId, secondId) {
+      let firstNote = null
+      let secondNote = null
+      noteService
+        .getNoteById(firstId)
+        .then((note) => (firstNote = note))
+        .then(noteService.getNoteById(secondId).then((note) => (secondNote = note)))
+        .then(() => {
+          let firstIdx = this.notes.findIndex((note) => note.id === firstId)
+          let secondIdx = this.notes.findIndex((note) => note.id === secondId)
+          this.notes.splice(firstIdx, 1, secondNote)
+          this.notes.splice(secondIdx, 1, firstNote)
+        })
+    },
+    onMove(event) {
+      const target = event.target
+      const pos = { x: target.getAttribute('data-x'), y: target.getAttribute('data-y') }
+      const startPos = { x: parseFloat(pos.x) || 0, y: parseFloat(pos.y) || 0 }
+      const deltaPos = { x: event.dx, y: event.dy }
+      const newX = startPos.x + deltaPos.x
+      const newY = startPos.y + deltaPos.y
+      target.style.transform = `translate(${newX}px, ${newY}px)`
+
+      target.setAttribute('data-x', newX)
+      target.setAttribute('data-y', newY)
+    },
     onSetFilter(filterBy, value) {
       if (filterBy === 'type') {
         if (value === 'all') {

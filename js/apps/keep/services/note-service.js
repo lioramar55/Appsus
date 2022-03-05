@@ -8,6 +8,7 @@ export const noteService = {
   updateNote,
   postNote,
   removeTodo,
+  getNoteById,
 }
 const notesKey = 'notesDB'
 _createNotes()
@@ -18,6 +19,10 @@ function query() {
 
 function removeTodo(id) {
   return storageService.remove(notesKey, id)
+}
+
+function getNoteById(id) {
+  return storageService.query(notesKey).then((notes) => notes.find((note) => note.id === id))
 }
 
 function updateNote(updatedNote) {
