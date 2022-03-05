@@ -15,7 +15,7 @@ export default {
         <span class="body">{{formmatedBody}}</span>
       </td>
       <td class="time-sent">{{sentAt}}</td> 
-      <tr><button v-if="hovered" @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png" alt=""></button></tr>
+      <tr><button class="delete-btn" v-if="hovered" @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png" alt=""></button></tr>
 
     </tr>
     

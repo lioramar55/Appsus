@@ -5,12 +5,11 @@
   border-radius: 1rem;
   color: aliceblue;
   padding: 0.6rem 4rem;
-  font-size: 1.3rem;
 }
 
 .success,
 .add {
-  background-color: rgb(155, 155, 155);
+  background-color: limegreen;
 }
 
 .remove {

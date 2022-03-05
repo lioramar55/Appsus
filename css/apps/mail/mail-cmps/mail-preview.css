@@ -31,5 +31,10 @@
   text-align: center;
 }
 
+.mail-preview .delete-btn {
+  border: none;
+  background-color: white;
+}
+
 
 
