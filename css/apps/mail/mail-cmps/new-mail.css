@@ -11,8 +11,9 @@
   transform: translate(-50%, -50%);
 }
 
-.new-mail.compose-mail h1 {
-  padding: 0.5rem 0;
+.new-mail.compose-mail {
+  position: relative;
+  padding: 2rem;
 }
 
 .new-mail form {

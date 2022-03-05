@@ -3,6 +3,7 @@ import { eventBus } from '../../../services/eventBus-service.js'
 export default {
   template: `
      <section class="new-mail">
+       <h1>Compose new mail</h1>
         <form @submit.prevent="onPostMail">
             <input required placeholder="To" type="email" v-model="mail.to" />
             <input type="text" placeholder="Subject" v-model="mail.subject"/>
