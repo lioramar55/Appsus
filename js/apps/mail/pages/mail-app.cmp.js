@@ -14,7 +14,7 @@ export default {
       <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
         <!-- <div>Unread {{unRead}}</div> -->
         </div>
-        <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
+        <mail-list @delete-email="onDeleteEmail"  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
       </div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
@@ -103,5 +103,11 @@ export default {
         this.emails.sort((a, b) => (b.sentAt - a.sentAt) * this.sort.dir)
       }
     },
+
+    onDeleteEmail(email) {
+      console.log(email)
+      mailService.deleteMail({ ...email })
+      .then(this.updateEmails)
+    }
   },
 }
