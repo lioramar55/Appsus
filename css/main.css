@@ -22,8 +22,14 @@
 @import 'apps/mail/mail-cmps/mail-details.css';
 @import 'apps/mail/mail-cmps/aside-filter.css';
 @import 'apps/mail/mail-cmps/mail-preview.css';
-/* */
+/* Book Components */
+@import 'apps/books/cmps/book-details.css';
+@import 'apps/books/cmps/book-filter.css';
+@import 'apps/books/cmps/book-review.css';
+@import 'apps/books/cmps/books.css';
+@import 'apps/books/cmps/long-text.css';
 
+/* General cmps */
 @import 'cmps/main-header.css';
 @import 'cmps/footer.css';
 @import 'cmps/screen.css';

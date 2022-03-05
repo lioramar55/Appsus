@@ -1,0 +1,39 @@
+.book-reviews {
+  margin: 1rem auto;
+}
+
+.reviews {
+  overflow-y: scroll;
+  height: 250px;
+}
+.review-add {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 2rem;
+  background-color: #444;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+
+.review-add form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-add form label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-add textarea {
+  resize: none;
+}
+
+.close-review {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+}

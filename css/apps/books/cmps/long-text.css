@@ -1,0 +1,12 @@
+.details .txt {
+  padding: 0.5rem;
+}
+
+.details .txt p {
+  margin: 0;
+}
+
+.details .txt .read-more {
+  color: cornflowerblue;
+  cursor: pointer;
+}

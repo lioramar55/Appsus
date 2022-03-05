@@ -1,0 +1,17 @@
+header {
+  background-color: rgb(226, 98, 24);
+}
+
+header div.main-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}

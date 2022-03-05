@@ -31,3 +31,14 @@
   outline: none;
   cursor: pointer;
 }
+
+/* Buttons */
+
+.btn:hover {
+}
+
+.read-more {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+}

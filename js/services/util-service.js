@@ -3,6 +3,15 @@ export const utilService = {
   rand,
   saveToStorage,
   loadFromStorage,
+  formatPrice,
+}
+
+function formatPrice(price) {
+  let code
+  if (price.currencyCode === 'ILS') {
+    code = 'he'
+  } else code = 'en'
+  return price.amount.toLocaleString(code, { style: 'currency', currency: price.currencyCode })
 }
 
 function saveToStorage(key, value) {

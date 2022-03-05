@@ -1,0 +1,32 @@
+.books-container {
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book .book-img {
+  cursor: pointer;
+  position: relative;
+}
+
+.book .book-img:hover::after {
+  content: 'Read More';
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(226, 98, 24);
+}
