@@ -48,6 +48,26 @@ export default {
       this.notes = notes.filter((note) => !note.isPinned)
     })
   },
+  mounted() {
+    // interact('.note-preview')
+    //   .draggable({
+    //     listeners: {
+    //       start(event) {
+    //         console.log('event.type, event.target', event.type, event.target)
+    //       },
+    //       move(event) {
+    //         let position = { x: event.target.offsetX, y: event.target.offsetY }
+    //         console.log('event.target', event.target)
+    //         position.x += event.dx
+    //         position.y += event.dy
+    //       },
+    //     },
+    //   })
+    //   .dropzone({
+    //     accept: '.note-preview',
+    //     overlap: 0.6,
+    //   })
+  },
   components: {
     notePreview,
     noteAdd,
