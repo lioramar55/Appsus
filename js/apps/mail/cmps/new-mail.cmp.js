@@ -34,7 +34,7 @@ export default {
   methods: {
     onPostMail() {
       this.$emit('mail-sent', { ...this.mail })
-      eventBus.emit('show-msg', { txt: 'Mail sent', type: 'success' })
+      eventBus.emit('show-msg', { txt: 'Message sent', type: 'success' })
     },
   },
 }

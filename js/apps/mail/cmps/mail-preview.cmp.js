@@ -16,6 +16,8 @@ export default {
       </td>
       <td class="time-sent">{{sentAt}}</td> 
       <tr><button class="delete-btn" v-if="hovered" @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png" alt=""></button></tr>
+      <tr><button class="" v-if="hovered && email.isRead" @click.stop="$emit('unread-email')"><img title="Mark as unread mail" src="assets/icons/mark-as-unread.png" alt=""></button></tr>
+      <tr><button class="" v-if="hovered && !email.isRead" @click.stop="$emit('read-email')"><img title="Mark as read mail" src="assets/icons/mark-as-read.png" alt=""></button></tr>
 
     </tr>
     

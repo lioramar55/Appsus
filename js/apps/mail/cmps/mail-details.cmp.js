@@ -36,7 +36,7 @@ export default {
     // add event bus
     onDeleteMail() {
       mailService.deleteMail({ ...this.email }).then(this.$router.push('/mail'))
-      .then(eventBus.emit('show-msg', { txt: 'Mail deleted', type: 'success' }))
+      .then(eventBus.emit('show-msg', { txt: 'Conversation moved to Trash', type: 'success' }))
     },
   },
 }

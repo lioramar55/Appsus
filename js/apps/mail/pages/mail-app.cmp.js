@@ -15,7 +15,7 @@ export default {
       <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
         <!-- <div>Unread {{unRead}}</div> -->
         </div>
-        <mail-list @delete-email="onDeleteEmail"  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
+        <mail-list @read-email="markAsRead" @unread-email="markAsUnread" @delete-email="onDeleteEmail"  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
       </div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
@@ -68,6 +68,26 @@ export default {
       })
     },
 
+    markAsRead(email) {
+      email.isRead = true
+      mailService.updateMail(email).then((email) => {
+        this.selectedEmail = email
+        mailService.query().then((emails) => {
+          this.emails = emails
+        })
+      })
+    },
+
+    markAsUnread(email) {
+      email.isRead = false
+      mailService.updateMail(email).then((email) => {
+        this.selectedEmail = email
+        mailService.query().then((emails) => {
+          this.emails = emails
+        })
+      })
+    },
+
     onEmailStar(email) {
       email.isStarred = !email.isStarred
       mailService
@@ -109,7 +129,7 @@ export default {
       console.log(email)
       mailService.deleteMail({ ...email })
       .then(this.updateEmails)
-      .then(eventBus.emit('show-msg', { txt: 'Mail deleted', type: 'success' }))
+      .then(eventBus.emit('show-msg', { txt: 'Conversation moved to Trash', type: 'success' }))
     }
   },
 }
