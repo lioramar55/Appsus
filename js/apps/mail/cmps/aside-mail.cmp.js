@@ -22,7 +22,7 @@ export default {
                     Trash
                 </li>
             </ul>
-            <button @click="showMailMenu" class="nav-mail-burger"><img src="assets/icons/nav-burger.png"></button>
+            <button @click="showMailMenu" class="nav-mail-burger"><img src="assets/icons/mailhamburger.jpg"></button>
         </aside>
     `,
   data() {

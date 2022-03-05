@@ -1,7 +1,7 @@
 
 
 .aside-filter .active,
-.aside-filter li:hover {
+.aside-filter li:hover:not(:first-child)  {
   background-color: #ff980f;
   border: none;
   font-weight: 600;
@@ -16,7 +16,6 @@
 .aside-filter .compose-btn {
   border: none;
   padding: 1rem 2.5rem;
-  margin-top: 1rem;
   align-self: flex-start;
   border-radius: 1.5rem;
   box-shadow: 1px 0px 10px -3px #000000;
@@ -47,3 +46,4 @@
   flex-basis: 25%;
   gap: 2rem;
 }
+
