@@ -1,3 +1,5 @@
+import { eventBus } from '../../../services/eventBus-service.js'
+
 export default {
   template: `
      <section class="new-mail">
@@ -32,6 +34,7 @@ export default {
   methods: {
     onPostMail() {
       this.$emit('mail-sent', { ...this.mail })
+      eventBus.emit('show-msg', { txt: 'Mail sent', type: 'success' })
     },
   },
 }
