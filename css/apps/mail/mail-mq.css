@@ -1,0 +1,39 @@
+/* MOBILE-ONLY */
+
+@media (max-width: 860px) {
+    .main-mail-layout {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+
+
+
+/* SMALL */
+
+@media (min-width: 660px) {
+    .main-mail-layout {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* MEDIUM */
+
+@media (min-width:860px) {
+    .main-mail-layout {
+        max-width: 800px;
+    }
+
+}
+
+
+/* LARGE */
+
+@media (min-width: 980px) {
+    .main-mail-layout {
+        max-width: 1080px;
+    }
+
+}

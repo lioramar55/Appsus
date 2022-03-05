@@ -7,7 +7,7 @@ import { mailService } from '../services/mail-service.js'
 
 export default {
   template: `
-    <section class="mail-app main-layout">
+    <section class="mail-app main-mail-layout">
       <mail-filter @set-sort="setSort" @set-filter="setFilter"></mail-filter>
       <div class="mail-layout">
         <div class="side-content-container">

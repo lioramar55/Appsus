@@ -12,6 +12,7 @@
 
 /* APPS */
 @import 'apps/mail/mail-app.css';
+@import 'apps/mail/mail-mq.css';
 @import 'apps/keep/keep-app.css';
 
 /* COMPONENTS */
