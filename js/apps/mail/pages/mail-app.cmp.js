@@ -4,6 +4,7 @@ import mailFilter from '../cmps/mail-filter.cmp.js'
 import asideMail from '../cmps/aside-mail.cmp.js'
 import newMail from '../cmps/new-mail.cmp.js'
 import { mailService } from '../services/mail-service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
   template: `
@@ -108,6 +109,7 @@ export default {
       console.log(email)
       mailService.deleteMail({ ...email })
       .then(this.updateEmails)
+      .then(eventBus.emit('show-msg', { txt: 'Mail deleted', type: 'success' }))
     }
   },
 }
