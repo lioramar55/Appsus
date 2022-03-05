@@ -1,12 +1,12 @@
 .mail-preview {
-  cursor: default;
-  height: 2rem;
+  height: 3.5rem;
   min-width: 100%;
+  cursor: pointer;
 }
 
 .mail-preview:hover {
-  outline: 1px solid #333;
-  /* box-shadow: 2px 6px 8px 2px #333; */
+  /* outline: 1px solid #333; */
+  box-shadow: 1px 0px 10px -3px #333;
 }
 
 .unread {
@@ -24,3 +24,9 @@
   height: 1.2rem;
   padding: 0.8px;
 }
+
+.mail-preview .time-sent {
+  text-align: center;
+}
+
+

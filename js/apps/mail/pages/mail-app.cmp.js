@@ -10,10 +10,12 @@ export default {
     <section class="mail-app main-layout">
       <mail-filter @set-sort="setSort" @set-filter="setFilter"></mail-filter>
       <div class="mail-layout">
+        <div class="side-content-container">
+      <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
+        <div>Unread {{unRead}}</div>
+        </div>
         <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
-        <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
       </div>
-      <div>Unread {{unRead}}</div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
        
