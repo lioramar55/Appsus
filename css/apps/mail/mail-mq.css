@@ -5,10 +5,8 @@
         max-width: 600px;
         margin: 0 auto;
     }
+
 }
-
-
-
 
 /* SMALL */
 
@@ -34,6 +32,10 @@
         height: 20rem;
       }
 
+      .btn-menu {
+          display: none;
+      }
+
 }
 
 
@@ -43,8 +45,4 @@
     .main-mail-layout {
         max-width: 1080px;
     }
-    .aside-filter {
-        flex-basis: 20%;
-    }
-
 }

@@ -3,7 +3,7 @@ export default {
   template: `
         <aside class="aside-filter">
             <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
-            <ul class="clean-list">
+            <ul class="main-aside-list clean-list">
                 <li :class="{ activeInbox: activeFolder === 'inbox' }" @click="sendInboxEmit('inbox')">
                     Inbox
                 </li>
