@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.mail-app {
+  font-size: 1.2rem;
+}
+
 .mail-list {
   width: 50rem;
 }
@@ -13,38 +17,42 @@
   width: 100%;
 }
 
-.mail-app {
-  font-family: roboto;
-  font-size: 1.2rem;
-}
-
 .mail-filter {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
   padding: 1rem 0;
+  background-color: #ff980f;
+}
+
+.mail-filter .logo {
+text-align: left;
+align-self: left;
 }
 
 .mail-filter button {
-  background-color: transparent;
+  background-color: #ffae42;
   border: none;
-  outline: 1px solid #333;
   padding: 0.25rem 0.5rem;
-  border-radius: 0.4rem;
+  cursor:pointer;
+  height: 2.5rem;
 }
 
 .mail-filter .wrap > * {
   margin: 0.5rem;
 }
 
-.mail-filter input {
-  width: 35rem;
+.mail-filter input, .mail-filter select {
+  width: 25rem;
   height: 2.8rem;
-  border-radius: 0.3rem;
   border: none;
-  box-shadow: 1px 0px 10px -3px #333;
+  background-color: #ffae42 ;
+}
+
+.mail-filter select {
+  width: 5rem;
+
 }
 
 .mail-filter input:focus {
@@ -52,13 +60,7 @@
   outline: none;
 }
 
-.mail-filter select {
-  width: 5rem;
-  height: 2rem;
-  box-shadow: 1px 0px 10px -3px #333;
-  margin-top: 0.5rem;
-  border: none;
-}
+
 
 
 
