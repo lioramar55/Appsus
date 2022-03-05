@@ -127,6 +127,8 @@ function _createEmails() {
       to: 'user@appsus.com',
       isStarred: false,
     },
+    
+
     {
       id: utilService.makeId(),
       from: 'Ninja Trader!',
@@ -137,6 +139,81 @@ function _createEmails() {
       to: 'user@appsus.com',
       isStarred: false,
     },
+
+    {
+      id: utilService.makeId(),
+      from: ' Quora לקט ',
+      subject: 'למה משמשת ספירה בבסיס הקסדצימלי?',
+      body: "ייצוג מספרים הקסדצימלי (בסיס 16) בשימוש בעיקר במצבים כאשר עובדים עם כתובת בזיכרון האופרטיבי של המחשב (RAM). אפשר לייצג כתובות זיכרון גם בינארית (בסיס 2) אבל זה ארוך מידי ולא נוח.    והסיבה היא שזיכרון מחשב מנוהל בדרך כלל ביחידות גדולות יותר כמו עמודים או סגמנטים. בדרך גדלים של יחידות זיכרון אלו הם בחזקה של 2, טווח המספרים הבסיס ההקסדצימלים הוא 16 שזה גם חזקה של 2. ולכן קל מאוד לבצע פעולות אריכמטיות בבסיס הזה, וזאת הסיבה שתמצא ייצוג זה בהרבה שפות תיכנות.  בנוסף, המחשב יודע לקורא רק ייצוג בינארי, שזה גם חזקה של 2, וקל להפוך ייצוג הקסדצימלי לבינארי.",
+      isRead: false,
+      sentAt: 150133936594,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+    {
+      id: utilService.makeId(),
+      from: 'KETO CHEF - עודד תלמור',
+      subject: 'הערב ב-20:00 שידור חי מיוחד שיכול לשים סוף לבעיית הקילוגרמים העודפים (פרסומת תזכורת לשידור הערב)',
+      body: 'קפצתי לתזכר אותך שהערב בשעה 20:00 אני עולה לשידור חי מיוחד בזום בנושא:   המסלול המהיר, הבריא (והטעים) להשלת הקילוגרמים העודפים   הנה הקישור לשידור בזום: https://ketochef.ravpage.co.il/zoom בשידור אני הולך לספר את הסיפור האישי שלי, איך הפכתי מחולה במחלה חשוכת מרפא בשם קרוהן, לאדם בריא לחלוטין וכיצד השיטה הזו יכולה:לעזור לך להשיל מהגוף את הקילוגרמים העודפים להיפטר מהמחשבות והשאלות על אוכל ליצור אורח חיים חדש ותפיסה חדשה לגבי מזון מבלי להיאבק בעצמך ולהמשיך ליהנות מאוכל משובח אז ממליץ בחום:  - להגיע בזמן ועם כלי כתיבה  - לשריין שעה וחצי ללא הפרעות (ככל שניתן)  - לצפות בשידור בלפטופ או במחשב נייח (ניתן גם מהנייד, אבל פחות נוח)  נתראה בשידור, עודד טלמור',
+      isRead: false,
+      sentAt: 1551133930594,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+
+    {
+      id: utilService.makeId(),
+      from: 'Cult Beauty',
+      subject: 'Ends tomorrow: don’t miss your FREE £15 gift card',
+      body: 'Achieve next-level luminosity with the new Light Reflecting Foundation that marries a hydrating, skin-smoothing formula with blur-effect coverage that\'s got everyone talking — pass it on!',
+      isRead: false,
+      sentAt: 155120930594,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+    {
+      id: utilService.makeId(),
+      from: 'Z Sport',
+      subject: 'סופ״ש ארוך מתחיל עכשיו! משלוח עד הבית בחינם בכל הזמנה מעל ₪69 📦 | (פרסומת)',
+     
+      body: 'LONG WEEKEND MADNESS - עד יום שני (כולל)  פריטים נוספים עכשיו בסייל באתר ובסניפים!  ובנוסף משלוח עד הבית בחינם בכל הזמנה מעל ₪69',
+      isRead: false,
+      sentAt: Date.now(),
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+
+    {
+      id: utilService.makeId(),
+      from: 'BEAUTY BAY',
+      subject: 'Green is trending 💚📈',
+      body: "Make a statement with the trending tones of the season. Whether you’re adding a slick of graphic liner or revamping your look with a hair change, we have everything you need.",
+      isRead: true,
+      sentAt: 150133936594,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+    {
+      id: utilService.makeId(),
+      from: 'ALDO',
+      subject: 'סניקרס, עכשיו: קולקצייה כזאת עוד לא הייתה כאן! 👟❤️💫💜| פרסומת',
+      body: 'נכון שהתגעגעתן? IT’S SNEAKERS TIME בימים המבלבלים האלה של שבין חורף לאביב, הבחירה היא בסניקרס!   וקולקצייה כזאת עוד לא הייתה כאן:  דגמים צבעוניים, טרנדים ונועזים, ואיך אפשר בלי סניקרס לבנות קלאסיות שכיף לחרוש עליהן. ',
+      isRead: false,
+      sentAt: 165157810994,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+    {
+      id: utilService.makeId(),
+      from: 'boohoo',
+      subject: 'Influencer Approved✔️',
+      body: '*Up to 70% off everything excluding sale, is automatically applied and applicable to selected lines only. Limited time only.**Add next day delivery to your basket at checkout and use code: TWOSDAY to reduce the price to 22p. Available exclusively on the boohoo app.',
+      isRead: false,
+      sentAt: 1551133930594,
+      to: 'user@appsus.com',
+      isStarred: false,
+    },
+    
   ]
   let emails = utilService.loadFromStorage(emailsKey) || baseEmails
   utilService.saveToStorage(emailsKey, emails)
