@@ -16,11 +16,16 @@
 
 /* COMPONENTS */
 
+/* MAIL COMPONENTS */
+@import 'apps/mail/mail-cmps/new-mail.css';
+@import 'apps/mail/mail-cmps/mail-details.css';
+@import 'apps/mail/mail-cmps/aside-filter.css';
+@import 'apps/mail/mail-cmps/mail-preview.css';
+/* */
+
+
+
 @import 'cmps/main-header.css';
-@import 'cmps/new-mail.css';
-@import 'cmps/mail-details.css';
-@import 'cmps/aside-filter.css';
-@import 'cmps/mail-preview.css';
 @import 'cmps/footer.css';
 @import 'cmps/screen.css';
 @import 'cmps/home.css';
