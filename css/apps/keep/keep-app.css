@@ -1,15 +1,16 @@
 .note-app {
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 .notes,
 .pinned-notes {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+  margin: 0 auto;
 }
 
 .note-preview {
+  display: inline-block;
+  page-break-inside: avoid;
+  break-inside: avoid;
   min-height: 120px;
   border-radius: 0.5rem;
   position: relative;
@@ -146,6 +147,19 @@
   border-radius: 0.5rem;
   margin: 0.5rem;
   padding: 0.25rem, 1rem;
+}
+
+/* Note filter */
+
+.note-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-filter input,
+.note-filter select {
+  padding: 0.5rem;
 }
 
 /* Input wrap */

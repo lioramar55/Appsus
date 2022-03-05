@@ -41,6 +41,10 @@ export default {
         type: 'all',
         txt: '',
       },
+      drag: {
+        elDrag: null,
+        elDrop: null,
+      },
     }
   },
   created() {
@@ -52,11 +56,14 @@ export default {
   mounted() {
     interact('.note-preview')
       .draggable({
+        onstart: this.onStart,
         onmove: this.onMove,
+        ondropdeactivate: this.onDropDeactivate,
+        ondragenter: this.swapElements,
       })
       .dropzone({
         accept: '.note-preview',
-        overlap: 0.8,
+        overlap: 0.5,
         checker: (
           dragEvent, // related dragmove or dragend
           event, // Touch, Pointer or Mouse Event
@@ -66,10 +73,13 @@ export default {
           draggable, // draggable Interactable
           draggableElement // draggable element
         ) => {
-          let dragId = draggableElement.classList.value.split(' ')[1]
-          let dropId = dropzoneElement.classList.value.split(' ')[1]
-          if (dropzone && dropped) {
-            this.swapElements(dragId, dropId)
+          if (dropped && dropzone) {
+            const rect = dropzoneElement.getBoundingClientRect()
+            const pos = { x: rect.left, y: rect.right }
+            this.drag.elDrop = { note: dropzoneElement, pos }
+            let firstId = draggableElement.classList.value.split(' ')[1]
+            let secondId = dropzoneElement.classList.value.split(' ')[1]
+            this.swapElements(firstId, secondId)
           }
         },
       })
@@ -84,16 +94,29 @@ export default {
     swapElements(firstId, secondId) {
       let firstNote = null
       let secondNote = null
-      noteService
-        .getNoteById(firstId)
-        .then((note) => (firstNote = note))
-        .then(noteService.getNoteById(secondId).then((note) => (secondNote = note)))
-        .then(() => {
-          let firstIdx = this.notes.findIndex((note) => note.id === firstId)
-          let secondIdx = this.notes.findIndex((note) => note.id === secondId)
-          this.notes.splice(firstIdx, 1, secondNote)
-          this.notes.splice(secondIdx, 1, firstNote)
-        })
+      firstNote = this.findNote(firstId)
+      secondNote = this.findNote(secondId)
+      let firstIdx = this.notes.findIndex((note) => note.id === firstId)
+      let secondIdx = this.notes.findIndex((note) => note.id === secondId)
+      this.notes.splice(firstIdx, 1, secondNote.note)
+      this.notes.splice(secondIdx, 1, firstNote.note)
+    },
+    onDropDeactivate(event) {
+      this.drag.note.left = this.drag.pos.x
+      this.drag.note.top = this.drag.pos.y
+    },
+    findNote(id) {
+      let note = this.notes.find((note) => note.id === id)
+      if (!note) {
+        note = this.pinnedNotes.find((note) => note.id === id)
+        return { note, from: 'pinned' }
+      } else return { note, from: 'notes' }
+    },
+    onStart(event) {
+      const target = event.target
+      const rect = target.getBoundingClientRect()
+      const pos = { x: rect.left, y: rect.right }
+      this.drag = { note: target, pos }
     },
     onMove(event) {
       const target = event.target

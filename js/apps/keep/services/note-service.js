@@ -9,6 +9,7 @@ export const noteService = {
   postNote,
   removeTodo,
   getNoteById,
+  saveNotes,
 }
 const notesKey = 'notesDB'
 _createNotes()
@@ -19,6 +20,10 @@ function query() {
 
 function removeTodo(id) {
   return storageService.remove(notesKey, id)
+}
+
+function saveNotes(notes) {
+  utilService.saveToStorage(notesKey, notes)
 }
 
 function getNoteById(id) {

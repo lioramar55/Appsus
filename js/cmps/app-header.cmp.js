@@ -6,19 +6,19 @@ export default {
         <nav>
           <ul class="nav-list clean-list">
             <li>
-              <router-link to="/">Home</router-link>
+              <router-link @click="closeMenu" to="/">Home</router-link>
             </li>
             <li>
-              <router-link to="/about">About</router-link>
+              <router-link @click="closeMenu" to="/about">About</router-link>
             </li>
             <li>
-              <router-link to="/book">Books</router-link>
+              <router-link @click="closeMenu" to="/book">Books</router-link>
             </li>
             <li>
-              <router-link to="/keep">Keep</router-link>
+              <router-link @click="closeMenu" to="/keep">Keep</router-link>
             </li>        
             <li>
-              <router-link to="/mail">Mail</router-link>
+              <router-link @click="closeMenu" to="/mail">Mail</router-link>
             </li>        
           </ul>
           <button @click="showMenu" class="nav-burger"><img src="assets/icons/nav-burger.png"></button>
@@ -29,6 +29,9 @@ export default {
   methods: {
     showMenu() {
       document.body.classList.toggle('show-menu')
+    },
+    closeMenu() {
+      document.body.classList.remove('show-menu')
     },
   },
 }

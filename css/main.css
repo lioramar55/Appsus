@@ -8,12 +8,12 @@
 @import 'basic/base.css';
 @import 'basic/layout.css';
 @import 'basic/helpers.css';
-@import 'basic/mq.css';
 
 /* APPS */
 @import 'apps/mail/mail-app.css';
 @import 'apps/mail/mail-mq.css';
 @import 'apps/keep/keep-app.css';
+@import 'apps/keep/keep-mq.css';
 
 /* COMPONENTS */
 
@@ -24,11 +24,12 @@
 @import 'apps/mail/mail-cmps/mail-preview.css';
 /* */
 
-
-
 @import 'cmps/main-header.css';
 @import 'cmps/footer.css';
 @import 'cmps/screen.css';
 @import 'cmps/home.css';
 @import 'cmps/about.css';
 @import 'cmps/user-msg.css';
+
+/* Media queries */
+@import 'basic/mq.css';
