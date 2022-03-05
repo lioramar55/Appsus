@@ -2,8 +2,10 @@ export default {
   props: ['folder'],
   template: `
         <aside class="aside-filter">
-            <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
             <ul class="main-aside-list clean-list">
+              <li>
+              <button @click="$emit('compose-mail')" class="compose-btn">Compose</button>
+              </li>
                 <li :class="{ activeInbox: activeFolder === 'inbox' }" @click="sendInboxEmit('inbox')">
                     Inbox
                 </li>
@@ -20,6 +22,7 @@ export default {
                     Trash
                 </li>
             </ul>
+            <button @click="showMailMenu" class="nav-burger"><img src="assets/icons/nav-burger.png"></button>
         </aside>
     `,
   data() {
@@ -39,6 +42,10 @@ export default {
     sendInboxEmit(statusVal) {
       this.activeFolder = statusVal
       this.$emit('status-filter', 'status', statusVal)
+    },
+
+    showMailMenu() {
+      document.body.classList.toggle('show-mail-menu')
     },
   },
 }
