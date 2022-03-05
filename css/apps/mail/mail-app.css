@@ -33,6 +33,10 @@ align-self: left;
   height: 3rem;
 }
 
+.mail-filter button:hover {
+  background-color: #ff980f;
+}
+
 .mail-filter .wrap > * {
   margin: 0.5rem;
 }
