@@ -1,16 +1,11 @@
 /* MAIL APP */
 
-.mail-layout {
-  display: flex;
-}
-
 .mail-app {
   font-size: 1.2rem;
+  font-family: lato;
 }
 
-.mail-list {
-  width: 50rem;
-}
+
 
 .mail-list table {
   width: 100%;
@@ -35,7 +30,11 @@ align-self: left;
   border: none;
   padding: 0.25rem 0.5rem;
   cursor:pointer;
-  height: 2.5rem;
+  height: 3rem;
+}
+
+.mail-filter button:hover {
+  background-color: #ff980f;
 }
 
 .mail-filter .wrap > * {

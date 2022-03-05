@@ -3,7 +3,8 @@ export default {
 
   props: ['email'],
   template: `
-    <tr  :class="isRead"
+    <tr @mouseover="hovered = true"
+        @mouseleave="hovered = false" :class="isRead"
       @click.stop="onOpenEmail"  
       class="mail-preview">
       <td @click.stop="$emit('email-starred')"
@@ -14,11 +15,19 @@ export default {
         <span class="body">{{formmatedBody}}</span>
       </td>
       <td class="time-sent">{{sentAt}}</td> 
+      <td v-if="hovered"><button @click.stop="$emit('delete-email')"><img title="Delete" src="assets/icons/trash.png" alt=""></button></td>
+      <td v-if="hovered && email.isRead"><button @click.stop="$emit('unread-email')"><img title="Mark as unread mail" src="assets/icons/mark-as-unread.png" alt=""></button></td>
+      <td v-if="hovered && !email.isRead"><button @click.stop="$emit('read-email')"><img title="Mark as read mail" src="assets/icons/mark-as-read.png" alt=""></button></td>
+
     </tr>
     
   `,
+
+  
   data() {
-    return {}
+    return {
+      hovered: false
+    }
   },
   created() {},
   computed: {
@@ -48,4 +57,5 @@ export default {
       this.$emit('open-email')
     }
   },
+
 }

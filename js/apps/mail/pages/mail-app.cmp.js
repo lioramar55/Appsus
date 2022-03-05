@@ -4,6 +4,7 @@ import mailFilter from '../cmps/mail-filter.cmp.js'
 import asideMail from '../cmps/aside-mail.cmp.js'
 import newMail from '../cmps/new-mail.cmp.js'
 import { mailService } from '../services/mail-service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
   template: `
@@ -12,9 +13,9 @@ export default {
       <div class="mail-layout">
         <div class="side-content-container">
       <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
-        <div>Unread {{unRead}}</div>
+        <!-- <div>Unread {{unRead}}</div> -->
         </div>
-        <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
+        <mail-list @read-email="markAsRead" @unread-email="markAsUnread" @delete-email="onDeleteEmail"  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
       </div>
       <new-mail v-if="isComposeMail"
        @close-modal="isComposeMail = false" @mail-sent="sendNewMail"></new-mail>
@@ -67,6 +68,18 @@ export default {
       })
     },
 
+    markAsRead(email) {
+      email.isRead = true
+      mailService.updateMail({...email})
+      .then(this.updateEmails)
+    },
+
+    markAsUnread(email) {
+      email.isRead = false
+      mailService.updateMail(email)
+      .then(this.updateEmails)
+    },
+
     onEmailStar(email) {
       email.isStarred = !email.isStarred
       mailService
@@ -103,5 +116,12 @@ export default {
         this.emails.sort((a, b) => (b.sentAt - a.sentAt) * this.sort.dir)
       }
     },
+
+    onDeleteEmail(email) {
+      console.log(email)
+      mailService.deleteMail({ ...email })
+      .then(this.updateEmails)
+      .then(eventBus.emit('show-msg', { txt: 'Conversation moved to Trash', type: 'success' }))
+    }
   },
 }

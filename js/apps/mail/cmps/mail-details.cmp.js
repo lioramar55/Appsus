@@ -1,4 +1,5 @@
 import { mailService } from '../services/mail-service.js'
+import { eventBus } from '../../../services/eventBus-service.js'
 
 export default {
   template: `
@@ -35,6 +36,7 @@ export default {
     // add event bus
     onDeleteMail() {
       mailService.deleteMail({ ...this.email }).then(this.$router.push('/mail'))
+      .then(eventBus.emit('show-msg', { txt: 'Conversation moved to Trash', type: 'success' }))
     },
   },
 }

@@ -10,11 +10,13 @@
 }
 
 .unread {
-  font-weight: 600;
+  /* font-weight: 600; */
+  font-family: lato-bold;
   color: #333;
 }
 .read {
-  font-weight: 400;
+  /* font-weight: 400; */
+  font-family: lato;
   color: #444;
   background-color: rgba(242, 245, 245, 0.8);
 }
@@ -28,6 +30,13 @@
 .mail-preview .time-sent {
   text-align: center;
 }
+
+.mail-preview button {
+  border: none;
+  background-color: transparent;
+}
+
+
 
 
 

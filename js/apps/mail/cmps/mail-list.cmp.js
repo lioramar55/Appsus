@@ -14,8 +14,12 @@ export default {
         <mail-preview v-for="email in emails"
         @open-email="$emit('email-selected', email)"
         @email-starred="$emit('email-starred', email)"
-        :email="email" >
+        :email="email"
+        @delete-email="$emit('delete-email', email)"
+        @read-email="$emit('read-email', email)"
+        @unread-email="$emit('unread-email', email)"
 
+         >
         </mail-preview>
       </tbody>
     </table>
