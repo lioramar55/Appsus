@@ -1,16 +1,10 @@
 /* MAIL APP */
 
-.mail-layout {
-  display: flex;
-}
-
 .mail-app {
   font-size: 1.2rem;
 }
 
-.mail-list {
-  width: 50rem;
-}
+
 
 .mail-list table {
   width: 100%;

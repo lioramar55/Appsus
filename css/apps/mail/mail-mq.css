@@ -7,6 +7,7 @@
     }
 
     .main-aside-list {
+    display: flex;
     position: fixed;
     flex-direction: column;
     top: 0;
@@ -14,8 +15,8 @@
     width: 40%;
     height: 100%;
     opacity: 0;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
     background-color: #ff980f;
     transform: translateX(100%);
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -46,11 +47,22 @@
         max-width: 600px;
         margin: 0 auto;
     }
+
 }
 
 /* MEDIUM */
 
 @media (min-width:860px) {
+    .mail-layout {
+    display: flex; 
+      
+      }
+
+      .mail-list {
+        width: 50rem;
+      }
+
+
     .main-mail-layout {
         max-width: 800px;
     }
@@ -68,7 +80,6 @@
       }
 
 }
-
 
 /* LARGE */
 

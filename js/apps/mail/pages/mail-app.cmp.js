@@ -12,7 +12,7 @@ export default {
       <div class="mail-layout">
         <div class="side-content-container">
       <aside-mail @compose-mail="isComposeMail = true" @status-filter="setFilter"></aside-mail>
-        <div>Unread {{unRead}}</div>
+        <!-- <div>Unread {{unRead}}</div> -->
         </div>
         <mail-list  @email-starred="onEmailStar" @email-selected="onOpenEmail" :emails="emails"></mail-list>
       </div>
