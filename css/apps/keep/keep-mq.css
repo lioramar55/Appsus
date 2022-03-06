@@ -6,6 +6,9 @@
     column-count: 1;
     padding: 0 1rem;
   }
+  .input-wrap .btns {
+    display: none;
+  }
 }
 
 /* MOBILE-ONLY */
@@ -15,6 +18,15 @@
   .pinned-notes {
     column-count: 2;
     column-gap: 1rem;
+  }
+  .input-wrap .btns {
+    display: none;
+  }
+}
+
+@media (min-width: 760px) {
+  .input-wrap .btns {
+    display: flex;
   }
 }
 
