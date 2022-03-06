@@ -26,7 +26,8 @@ export default {
       @edit-note="onEditNote"></note-preview>
     </div>
     <note-modal v-if="isModalOpen" 
-     @save-and-close='saveNote' :note="selectedNote"></note-modal>
+     @save-and-close='saveNote'
+     @close-note-modal="closeNoteModal" :note="selectedNote"></note-modal>
   </section>
             
             
@@ -41,10 +42,10 @@ export default {
         type: 'all',
         txt: '',
       },
-      drag: {
-        elDrag: null,
-        elDrop: null,
-      },
+      // drag: {
+      //   elDrag: null,
+      //   elDrop: null,
+      // },
     }
   },
   created() {
@@ -54,35 +55,35 @@ export default {
     })
   },
   mounted() {
-    interact('.note-preview')
-      .draggable({
-        onstart: this.onStart,
-        onmove: this.onMove,
-        ondropdeactivate: this.onDropDeactivate,
-        ondragenter: this.swapElements,
-      })
-      .dropzone({
-        accept: '.note-preview',
-        overlap: 0.5,
-        checker: (
-          dragEvent, // related dragmove or dragend
-          event, // Touch, Pointer or Mouse Event
-          dropped, // bool default checker result
-          dropzone, // dropzone Interactable
-          dropzoneElement, // dropzone element
-          draggable, // draggable Interactable
-          draggableElement // draggable element
-        ) => {
-          if (dropped && dropzone) {
-            const rect = dropzoneElement.getBoundingClientRect()
-            const pos = { x: rect.left, y: rect.right }
-            this.drag.elDrop = { note: dropzoneElement, pos }
-            let firstId = draggableElement.classList.value.split(' ')[1]
-            let secondId = dropzoneElement.classList.value.split(' ')[1]
-            this.swapElements(firstId, secondId)
-          }
-        },
-      })
+    // interact('.note-preview')
+    //   .draggable({
+    //     onstart: this.onStart,
+    //     onmove: this.onMove,
+    //     ondropdeactivate: this.onDropDeactivate,
+    //     ondragenter: this.swapElements,
+    //   })
+    //   .dropzone({
+    //     accept: '.note-preview',
+    //     overlap: 0.5,
+    //     checker: (
+    //       dragEvent, // related dragmove or dragend
+    //       event, // Touch, Pointer or Mouse Event
+    //       dropped, // bool default checker result
+    //       dropzone, // dropzone Interactable
+    //       dropzoneElement, // dropzone element
+    //       draggable, // draggable Interactable
+    //       draggableElement // draggable element
+    //     ) => {
+    //       if (dropped && dropzone) {
+    //         const rect = dropzoneElement.getBoundingClientRect()
+    //         const pos = { x: rect.left, y: rect.right }
+    //         this.drag.elDrop = { note: dropzoneElement, pos }
+    //         let firstId = draggableElement.classList.value.split(' ')[1]
+    //         let secondId = dropzoneElement.classList.value.split(' ')[1]
+    //         this.swapElements(firstId, secondId)
+    //       }
+    //     },
+    //   })
   },
   components: {
     notePreview,
@@ -91,45 +92,48 @@ export default {
     noteModal,
   },
   methods: {
-    swapElements(firstId, secondId) {
-      let firstNote = null
-      let secondNote = null
-      firstNote = this.findNote(firstId)
-      secondNote = this.findNote(secondId)
-      let firstIdx = this.notes.findIndex((note) => note.id === firstId)
-      let secondIdx = this.notes.findIndex((note) => note.id === secondId)
-      this.notes.splice(firstIdx, 1, secondNote.note)
-      this.notes.splice(secondIdx, 1, firstNote.note)
+    closeNoteModal() {
+      this.isModalOpen = !this.isModalOpen
     },
-    onDropDeactivate(event) {
-      this.drag.note.left = this.drag.pos.x
-      this.drag.note.top = this.drag.pos.y
-    },
-    findNote(id) {
-      let note = this.notes.find((note) => note.id === id)
-      if (!note) {
-        note = this.pinnedNotes.find((note) => note.id === id)
-        return { note, from: 'pinned' }
-      } else return { note, from: 'notes' }
-    },
-    onStart(event) {
-      const target = event.target
-      const rect = target.getBoundingClientRect()
-      const pos = { x: rect.left, y: rect.right }
-      this.drag = { note: target, pos }
-    },
-    onMove(event) {
-      const target = event.target
-      const pos = { x: target.getAttribute('data-x'), y: target.getAttribute('data-y') }
-      const startPos = { x: parseFloat(pos.x) || 0, y: parseFloat(pos.y) || 0 }
-      const deltaPos = { x: event.dx, y: event.dy }
-      const newX = startPos.x + deltaPos.x
-      const newY = startPos.y + deltaPos.y
-      target.style.transform = `translate(${newX}px, ${newY}px)`
+    // swapElements(firstId, secondId) {
+    //   let firstNote = null
+    //   let secondNote = null
+    //   firstNote = this.findNote(firstId)
+    //   secondNote = this.findNote(secondId)
+    //   let firstIdx = this.notes.findIndex((note) => note.id === firstId)
+    //   let secondIdx = this.notes.findIndex((note) => note.id === secondId)
+    //   this.notes.splice(firstIdx, 1, secondNote.note)
+    //   this.notes.splice(secondIdx, 1, firstNote.note)
+    // },
+    // onDropDeactivate(event) {
+    //   this.drag.note.left = this.drag.pos.x
+    //   this.drag.note.top = this.drag.pos.y
+    // },
+    // findNote(id) {
+    //   let note = this.notes.find((note) => note.id === id)
+    //   if (!note) {
+    //     note = this.pinnedNotes.find((note) => note.id === id)
+    //     return { note, from: 'pinned' }
+    //   } else return { note, from: 'notes' }
+    // },
+    // onStart(event) {
+    //   const target = event.target
+    //   const rect = target.getBoundingClientRect()
+    //   const pos = { x: rect.left, y: rect.right }
+    //   this.drag = { note: target, pos }
+    // },
+    // onMove(event) {
+    //   const target = event.target
+    //   const pos = { x: target.getAttribute('data-x'), y: target.getAttribute('data-y') }
+    //   const startPos = { x: parseFloat(pos.x) || 0, y: parseFloat(pos.y) || 0 }
+    //   const deltaPos = { x: event.dx, y: event.dy }
+    //   const newX = startPos.x + deltaPos.x
+    //   const newY = startPos.y + deltaPos.y
+    //   target.style.transform = `translate(${newX}px, ${newY}px)`
 
-      target.setAttribute('data-x', newX)
-      target.setAttribute('data-y', newY)
-    },
+    //   target.setAttribute('data-x', newX)
+    //   target.setAttribute('data-y', newY)
+    // },
     onSetFilter(filterBy, value) {
       if (filterBy === 'type') {
         if (value === 'all') {

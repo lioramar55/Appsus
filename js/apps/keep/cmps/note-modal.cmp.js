@@ -6,8 +6,9 @@ export default {
       <h2 ref="title" contentEditable="true">{{title}}</h2>
       <div ref="txt" contentEditable="true">{{content}}</div>
       <div class="btn-section">
-        <note-btns :note="note" :isNoteModal="true" class="modal-btns" @edit-action="onEditAction"></note-btns>
+        <note-btns :note="note" :isNoteModal="true" class="modal-btns"></note-btns>
         <button class="close" @click="onSaveAndClose">Save</button>
+        <button class="close" @click="close">Close</button>
       </div>
     </div>
   `,
@@ -30,7 +31,9 @@ export default {
       this.newNote.title = this.$refs.title.innerText
       this.$emit('save-and-close', this.newNote, this.note)
     },
-    onEditAction(action) {},
+    close() {
+      this.$emit('close-note-modal')
+    },
   },
   computed: {
     content() {
